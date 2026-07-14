@@ -10,4 +10,4 @@ For setup instructions, please see the [Fabric Documentation page](https://docs.
 
 ## License
 
-This template is available under the MIT license.
+Lost Fragments is available under the MIT License. See [LICENSE](LICENSE) for details.

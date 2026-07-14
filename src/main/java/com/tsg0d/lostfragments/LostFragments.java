@@ -12,6 +12,7 @@ import com.tsg0d.lostfragments.infusion.UtilityItemAbilities;
 import com.tsg0d.lostfragments.infusion.TeleportRodAbilities;
 import com.tsg0d.lostfragments.menu.ModMenus;
 import com.tsg0d.lostfragments.item.ModItems;
+import com.tsg0d.lostfragments.item.FirstJoinBookGift;
 import com.tsg0d.lostfragments.item.TalismanAbilities;
 import com.tsg0d.lostfragments.network.ModNetworking;
 import net.minecraft.resources.Identifier;
@@ -28,6 +29,7 @@ public final class LostFragments implements ModInitializer {
 		ModNetworking.initialize();
 		ModBlocks.initialize();
 		ModItems.initialize();
+		FirstJoinBookGift.initialize();
 		ModMenus.initialize();
 		InfusionService.initialize();
 		MiningAbilities.initialize();

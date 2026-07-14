@@ -65,7 +65,7 @@ public final class ModItems {
 
 	private static WrittenBookContent guideContent() {
 		List<String> text = List.of(
-				"LOST FRAGMENTS\n\nWelcome! This book explains amethyst infusion and every current item. Keep it nearby while learning the mod.",
+				"LOST FRAGMENTS\n\nWelcome! Every player receives this book once when first joining a world. It explains amethyst infusion and every current item.",
 				"INFUSION TABLE\n\nRecipe:\nA E A\nO C O\nO O O\n\nA: Amethyst Block\nE: Echo Shard\nO: Obsidian\nC: Crafting Table",
 				"HOW TO INFUSE\n\nPlace an eligible item left, amethyst shards in the middle, then take the result. Purple means stable. Red and 'INFUSION FAILED' means fractured.",
 				"FAILURE RISK\n\nFull shard cost is safe. With fewer shards, risk = missing / required. Failed items have no infused ability. Re-infuse them for twice the normal cost.",

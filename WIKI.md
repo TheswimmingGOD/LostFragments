@@ -167,6 +167,8 @@ Unknown modded materials are assigned a tier from their total armor value. Every
 
 ## Book of Infusion
 
+- Every player receives one automatically the first time they join a world. Rejoining, dying, or restarting does not give another copy.
+- If the player's inventory is full on first join, the book drops at their feet.
 - Created by infusing a normal Book with one amethyst shard.
 - Opens like a written book when used.
 - Contains a beginner guide to the Infusion Table, shard costs, failure risks, tool and armor abilities, utility items, controls, fragment locations, Resonant Ender Chests, bundles, and Catmen Talismans.
