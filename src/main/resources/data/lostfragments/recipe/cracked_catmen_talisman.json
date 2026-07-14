@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": ["CSC", "S S", "CSC"],
+  "key": {
+    "C": "lostfragments:lost_corner_fragment",
+    "S": "lostfragments:lost_side_fragment"
+  },
+  "result": { "id": "lostfragments:cracked_catmen_talisman", "count": 1 }
+}

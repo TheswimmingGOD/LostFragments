@@ -1,0 +1,43 @@
+{
+  "itemGroup.lostfragments": "Lost Fragments",
+  "block.lostfragments.infusion_table": "Infusion Table",
+  "container.lostfragments.infusion_table": "Amethyst Infusion",
+  "container.lostfragments.infusion_status": "Shards: %s/%s  Risk: %s%%",
+  "tooltip.lostfragments.amethyst_infused": "Amethyst Infused",
+  "tooltip.lostfragments.fractured_infusion": "Fractured Infusion — Weakness I",
+  "tooltip.lostfragments.fractured_armor": "Fractured — Slowness I and Darkness",
+  "tooltip.lostfragments.tracking": "Tracking: %s",
+  "tooltip.lostfragments.no_target": "No target",
+  "message.lostfragments.infusion_hint": "Hold equipment in one hand and an amethyst shard in the other",
+  "message.lostfragments.already_infused": "This item is already infused",
+  "message.lostfragments.infusion_complete": "Amethyst infusion complete"
+  ,"message.lostfragments.compass_bound": "Tracking %s"
+  ,"message.lostfragments.compass_cleared": "Tracking cleared"
+  ,"message.lostfragments.clock_time": "Day %s - %s"
+  ,"enchantment.lostfragments.ender_reach": "Ender Reach"
+  ,"message.lostfragments.rod_loaded": "Ender pearl loaded"
+  ,"message.lostfragments.rod_needs_pearl": "Load an ender pearl from your other hand"
+  ,"message.lostfragments.rod_anchor": "Teleport point saved at %s, %s, %s"
+  ,"message.lostfragments.rod_wrong_dimension": "The teleport point is in another dimension"
+  ,"message.lostfragments.rod_too_far": "Teleport point is farther than %s blocks"
+  ,"message.lostfragments.rod_blocked": "The teleport point is obstructed"
+  ,"block.lostfragments.resonant_ender_chest": "Resonant Ender Chest"
+  ,"container.lostfragments.resonant_ender_chest": "Resonant Ender Chest"
+  ,"item.lostfragments.infused_bundle": "Infused Bundle"
+  ,"item.lostfragments.infused_colored_bundle": "Infused %s"
+  ,"item.lostfragments.failed_infusion": "Failed Infusion: %s"
+  ,"tooltip.lostfragments.infusion_failed": "INFUSION FAILED"
+  ,"tooltip.lostfragments.retry_infusion": "Inactive - re-infuse for twice the normal shard cost"
+  ,"item.lostfragments.catmen_talisman": "Catmen Talisman"
+  ,"item.lostfragments.cracked_catmen_talisman": "Cracked Catmen Talisman"
+  ,"item.lostfragments.lost_corner_fragment": "Lost Corner Fragment"
+  ,"item.lostfragments.lost_side_fragment": "Lost Side Fragment"
+  ,"tooltip.lostfragments.talisman_uses": "Death saves remaining: %s/8"
+  ,"tooltip.lostfragments.cracked_talisman": "Useless until infused with amethyst"
+  ,"item.lostfragments.book_of_infusion": "Book of Infusion"
+  ,"tooltip.lostfragments.bundle_capacity": "Capacity: %s/%s items"
+  ,"tooltip.lostfragments.bundle_stable": "Stores up to 8 non-stackable items"
+  ,"tooltip.lostfragments.bundle_fractured": "Stores stackable items only"
+  ,"tooltip.lostfragments.rod_loaded": "Ender pearl loaded"
+  ,"tooltip.lostfragments.rod_point": "Point: %s, %s, %s"
+}

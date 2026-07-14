@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": ["AEA", "OCO", "OOO"],
+  "key": {
+    "A": "minecraft:amethyst_block",
+    "E": "minecraft:echo_shard",
+    "O": "minecraft:obsidian",
+    "C": "minecraft:crafting_table"
+  },
+  "result": { "id": "lostfragments:infusion_table", "count": 1 }
+}

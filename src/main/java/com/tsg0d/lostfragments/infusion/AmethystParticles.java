@@ -1,0 +1,28 @@
+package com.tsg0d.lostfragments.infusion;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+
+public final class AmethystParticles {
+	private AmethystParticles() {
+	}
+
+	public static void burst(ServerLevel level, BlockPos center, int count) {
+		double x = center.getX() + 0.5;
+		double y = center.getY() + 0.65;
+		double z = center.getZ() + 0.5;
+		level.sendParticles(ParticleTypes.WITCH, x, y, z, count,
+				0.65, 0.45, 0.65, 0.02);
+		level.sendParticles(ParticleTypes.REVERSE_PORTAL, x, y, z, Math.max(4, count / 3),
+				0.45, 0.35, 0.45, 0.015);
+	}
+
+	public static void fullSetAura(ServerPlayer player) {
+		ServerLevel level = (ServerLevel) player.level();
+		level.sendParticles(ParticleTypes.WITCH,
+				player.getX(), player.getY() + 1.0, player.getZ(), 5,
+				0.55, 0.8, 0.55, 0.005);
+	}
+}

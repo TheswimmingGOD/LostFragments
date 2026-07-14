@@ -1,0 +1,106 @@
+{
+  "ambientocclusion": true,
+  "textures": {
+    "leg": "lostfragments:block/infusion_table_leg",
+    "top": "lostfragments:block/infusion_table_top",
+    "shard": "lostfragments:block/infusion_table_shard",
+    "particle": "lostfragments:block/infusion_table_leg"
+  },
+  "elements": [
+    {
+      "from": [0, 9, 0],
+      "to": [16, 12, 16],
+      "faces": {
+        "north": { "uv": [8, 0, 16, 1.5], "texture": "#top" },
+        "east":  { "uv": [8, 1.5, 16, 3], "texture": "#top" },
+        "south": { "uv": [8, 3, 16, 4.5], "texture": "#top" },
+        "west":  { "uv": [8, 4.5, 16, 6], "texture": "#top" },
+        "up":    { "uv": [8, 8, 0, 0], "texture": "#top" },
+        "down":  { "uv": [8, 8, 0, 16], "texture": "#top" }
+      }
+    },
+    {
+      "from": [0, 0, 0],
+      "to": [2, 9, 2],
+      "faces": {
+        "north": { "uv": [0, 0, 2, 9], "texture": "#leg" },
+        "east":  { "uv": [2, 0, 4, 9], "texture": "#leg" },
+        "south": { "uv": [4, 0, 6, 9], "texture": "#leg" },
+        "west":  { "uv": [6, 0, 8, 9], "texture": "#leg" },
+        "up":    { "uv": [10, 2, 8, 0], "texture": "#leg" },
+        "down":  { "uv": [10, 2, 8, 4], "texture": "#leg" }
+      }
+    },
+    {
+      "from": [0, 0, 14],
+      "to": [2, 9, 16],
+      "faces": {
+        "north": { "uv": [0, 0, 2, 9], "texture": "#leg" },
+        "east":  { "uv": [2, 0, 4, 9], "texture": "#leg" },
+        "south": { "uv": [4, 0, 6, 9], "texture": "#leg" },
+        "west":  { "uv": [6, 0, 8, 9], "texture": "#leg" },
+        "up":    { "uv": [10, 2, 8, 0], "texture": "#leg" },
+        "down":  { "uv": [10, 2, 8, 4], "texture": "#leg" }
+      }
+    },
+    {
+      "from": [14, 0, 14],
+      "to": [16, 9, 16],
+      "faces": {
+        "north": { "uv": [6, 3, 6.5, 5.25], "texture": "#leg" },
+        "east":  { "uv": [6, 5.25, 6.5, 7.5], "texture": "#leg" },
+        "south": { "uv": [6.5, 3, 7, 5.25], "texture": "#leg" },
+        "west":  { "uv": [6.5, 5.25, 7, 7.5], "texture": "#leg" },
+        "up":    { "uv": [7.5, 8, 7, 7.5], "texture": "#leg" },
+        "down":  { "uv": [8, 7, 7.5, 7.5], "texture": "#leg" }
+      }
+    },
+    {
+      "from": [14, 0, 0],
+      "to": [16, 9, 2],
+      "faces": {
+        "north": { "uv": [7, 3, 7.5, 5.25], "texture": "#leg" },
+        "east":  { "uv": [7, 5.25, 7.5, 7.5], "texture": "#leg" },
+        "south": { "uv": [7.5, 3, 8, 5.25], "texture": "#leg" },
+        "west":  { "uv": [4, 7.5, 4.5, 9.75], "texture": "#leg" },
+        "up":    { "uv": [8, 8, 7.5, 7.5], "texture": "#leg" },
+        "down":  { "uv": [0.5, 8, 0, 8.5], "texture": "#leg" }
+      }
+    },
+    {
+      "from": [7, 12, 7],
+      "to": [9, 15, 9],
+      "faces": {
+        "north": { "uv": [0, 0, 2, 3], "texture": "#shard" },
+        "east":  { "uv": [2, 0, 4, 3], "texture": "#shard" },
+        "south": { "uv": [0, 3, 2, 6], "texture": "#shard" },
+        "west":  { "uv": [2, 3, 4, 6], "texture": "#shard" },
+        "up":    { "uv": [6, 2, 4, 0], "texture": "#shard" },
+        "down":  { "uv": [6, 2, 4, 4], "texture": "#shard" }
+      }
+    },
+    {
+      "from": [7, 15, 7],
+      "to": [8, 17, 8],
+      "faces": {
+        "north": { "uv": [4, 4, 5, 6], "texture": "#shard" },
+        "east":  { "uv": [5, 4, 6, 6], "texture": "#shard" },
+        "south": { "uv": [0, 6, 1, 8], "texture": "#shard" },
+        "west":  { "uv": [6, 0, 7, 2], "texture": "#shard" },
+        "up":    { "uv": [2, 7, 1, 6], "texture": "#shard" },
+        "down":  { "uv": [3, 6, 2, 7], "texture": "#shard" }
+      }
+    }
+  ],
+  "display": {
+    "gui": {
+      "rotation": [30, 225, 0],
+      "translation": [0, 0, 0],
+      "scale": [0.75, 0.75, 0.75]
+    },
+    "ground": {
+      "translation": [0, 3, 0],
+      "scale": [0.5, 0.5, 0.5]
+    }
+  }
+}
