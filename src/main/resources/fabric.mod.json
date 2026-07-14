@@ -7,7 +7,7 @@
 	"authors": [
 		"tsg0d"
 	],
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/lostfragments/icon.png",
 	"environment": "*",
 	"entrypoints": {
