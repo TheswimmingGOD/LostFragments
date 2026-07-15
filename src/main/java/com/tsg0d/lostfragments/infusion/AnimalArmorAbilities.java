@@ -13,10 +13,9 @@ import net.minecraft.world.phys.Vec3;
 
 import java.util.Map;
 import java.util.WeakHashMap;
+import com.tsg0d.lostfragments.config.LostFragmentsConfig;
 
 public final class AnimalArmorAbilities {
-	private static final double ACTIVATION_CHANCE = 0.40;
-	private static final long COOLDOWN_TICKS = 20L;
 	private static final Map<LivingEntity, Long> LAST_ACTIVATION = new WeakHashMap<>();
 
 	private AnimalArmorAbilities() {
@@ -38,16 +37,18 @@ public final class AnimalArmorAbilities {
 			}
 
 			long now = level.getGameTime();
-			if (now - LAST_ACTIVATION.getOrDefault(wearer, Long.MIN_VALUE / 2) < COOLDOWN_TICKS
-					|| level.getRandom().nextDouble() >= ACTIVATION_CHANCE) {
+			var config = LostFragmentsConfig.get().animalArmor;
+			if (now - LAST_ACTIVATION.getOrDefault(wearer, Long.MIN_VALUE / 2) < Math.round(config.cooldownSeconds * 20.0)
+					|| level.getRandom().nextDouble() >= config.activationChancePercent / 100.0) {
 				return;
 			}
 			LAST_ACTIVATION.put(wearer, now);
 
-			attacker.hurtServer(level, level.damageSources().thorns(wearer), 2.0F);
+			attacker.hurtServer(level, level.damageSources().thorns(wearer), (float) config.damage);
 			Vec3 away = attacker.position().subtract(wearer.position());
 			double horizontal = Math.max(0.001, Math.sqrt(away.x * away.x + away.z * away.z));
-			attacker.push(away.x / horizontal * 1.15, 0.3, away.z / horizontal * 1.15);
+			attacker.push(away.x / horizontal * config.knockback, config.upwardKnockback,
+					away.z / horizontal * config.knockback);
 			attacker.hurtMarked = true;
 			AmethystParticles.burst(level, wearer.getX(), wearer.getY() + wearer.getBbHeight() * 0.6,
 					wearer.getZ(), 18);

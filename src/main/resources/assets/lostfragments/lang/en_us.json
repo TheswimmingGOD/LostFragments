@@ -7,11 +7,11 @@
   "tooltip.lostfragments.fractured_infusion": "Fractured item - Weakness level %s while held",
   "tooltip.lostfragments.fractured_armor": "Fractured armor - penalties scale with level %s",
   "tooltip.lostfragments.fracture_level": "Fracture Level: %s",
-  "tooltip.lostfragments.infused_bow": "Amethyst Multishot: 3 arrows",
-  "tooltip.lostfragments.infused_animal_armor": "Reactive Defense: 40% chance",
+  "tooltip.lostfragments.infused_bow": "Amethyst Multishot: %s arrows",
+  "tooltip.lostfragments.infused_animal_armor": "Reactive Defense: %s%% chance",
   "tooltip.lostfragments.infused_trident": "Empowered trident enchantments",
-  "tooltip.lostfragments.infused_mace": "Amethyst Gravity Field: 5-block pull",
-  "tooltip.lostfragments.infused_spear": "Resonant Brace; Lunge stamina cost halved",
+  "tooltip.lostfragments.infused_mace": "Amethyst Gravity Field: %s-block pull",
+  "tooltip.lostfragments.infused_spear": "Resonant Brace; Lunge hunger cost: %s%%",
   "tooltip.lostfragments.tracking": "Tracking: %s",
   "tooltip.lostfragments.no_target": "No target",
   "message.lostfragments.infusion_hint": "Hold equipment in one hand and an amethyst shard in the other",
@@ -38,12 +38,17 @@
   ,"item.lostfragments.cracked_catmen_talisman": "Cracked Catmen Talisman"
   ,"item.lostfragments.lost_corner_fragment": "Lost Corner Fragment"
   ,"item.lostfragments.lost_side_fragment": "Lost Side Fragment"
-  ,"tooltip.lostfragments.talisman_uses": "Death saves remaining: %s/8"
+  ,"tooltip.lostfragments.talisman_uses": "Death saves remaining: %s/%s"
   ,"tooltip.lostfragments.cracked_talisman": "Useless until infused with amethyst"
   ,"item.lostfragments.book_of_infusion": "Book of Infusion"
   ,"tooltip.lostfragments.bundle_capacity": "Capacity: %s/%s items"
-  ,"tooltip.lostfragments.bundle_stable": "Stores up to 8 non-stackable items"
+  ,"tooltip.lostfragments.bundle_stable": "Stores up to %s non-stackable items"
   ,"tooltip.lostfragments.bundle_fractured": "Stores stackable items only"
   ,"tooltip.lostfragments.rod_loaded": "Ender pearl loaded"
   ,"tooltip.lostfragments.rod_point": "Point: %s, %s, %s"
+  ,"config.lostfragments.title": "Lost Fragments Configuration"
+  ,"config.lostfragments.page": "Page %s of %s"
+  ,"config.lostfragments.reset": "Defaults"
+  ,"config.lostfragments.save": "Save"
+  ,"config.lostfragments.invalid": "Invalid value: %s"
 }

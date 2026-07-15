@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
+import com.tsg0d.lostfragments.config.LostFragmentsConfig;
 
 public final class HoeAbilities {
 	private HoeAbilities() {
@@ -28,8 +29,9 @@ public final class HoeAbilities {
 
 			BlockPos origin = hit.getBlockPos();
 			int tilled = 0;
-			for (int x = -1; x <= 1 && !hoe.isEmpty(); x++) {
-				for (int z = -1; z <= 1 && !hoe.isEmpty(); z++) {
+			int radius = LostFragmentsConfig.get().mining.areaRadius;
+			for (int x = -radius; x <= radius && !hoe.isEmpty(); x++) {
+				for (int z = -radius; z <= radius && !hoe.isEmpty(); z++) {
 					if (x == 0 && z == 0) {
 						continue;
 					}

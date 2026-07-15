@@ -10,11 +10,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
+import com.tsg0d.lostfragments.config.LostFragmentsConfig;
 
 public final class SwordAbilities {
-	private static final double RADIUS = 3.0;
-	private static final int COOLDOWN_TICKS = 120;
-
 	private SwordAbilities() {
 	}
 
@@ -33,7 +31,7 @@ public final class SwordAbilities {
 
 			List<LivingEntity> targets = level.getEntitiesOfClass(
 					LivingEntity.class,
-					player.getBoundingBox().inflate(RADIUS),
+					player.getBoundingBox().inflate(LostFragmentsConfig.get().sword.radius),
 					target -> target != player
 							&& target.isAlive()
 							&& !player.isAlliedTo(target)
@@ -47,12 +45,15 @@ public final class SwordAbilities {
 					away = new Vec3(0.0, 0.0, 1.0);
 					horizontal = 1.0;
 				}
-				target.push(away.x / horizontal * 1.35, 0.35, away.z / horizontal * 1.35);
+				var config = LostFragmentsConfig.get().sword;
+				target.push(away.x / horizontal * config.knockback, config.upwardKnockback,
+						away.z / horizontal * config.knockback);
 				target.hurtMarked = true;
 				moved++;
 			}
-			sword.hurtAndBreak(4, player, hand);
-			player.getCooldowns().addCooldown(sword, COOLDOWN_TICKS);
+			var config = LostFragmentsConfig.get().sword;
+			sword.hurtAndBreak(config.durabilityCost, player, hand);
+			player.getCooldowns().addCooldown(sword, (int) Math.round(config.cooldownSeconds * 20.0));
 			if (moved > 0) {
 				AmethystParticles.burst((ServerLevel) level, player.blockPosition(), 22);
 			}

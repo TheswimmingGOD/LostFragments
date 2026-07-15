@@ -13,6 +13,7 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import com.tsg0d.lostfragments.config.LostFragmentsConfig;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -173,8 +174,11 @@ public final class InfusionTableMenu extends AbstractContainerMenu {
 					.withStyle(ChatFormatting.RED));
 			if (result.is(ModItems.INFUSED_BUNDLE)) {
 				int oldCapacity = equipment.getOrDefault(ModComponents.BUNDLE_CAPACITY, 0);
+				var bundle = LostFragmentsConfig.get().bundle;
+				int minimum = Math.min(bundle.fracturedMinimumCapacity, bundle.fracturedMaximumCapacity);
+				int maximum = Math.max(bundle.fracturedMinimumCapacity, bundle.fracturedMaximumCapacity);
 				result.set(ModComponents.BUNDLE_CAPACITY,
-						oldCapacity > 0 ? oldCapacity : 16 + owner.getRandom().nextInt(33));
+						oldCapacity > 0 ? oldCapacity : minimum + owner.getRandom().nextInt(maximum - minimum + 1));
 			}
 		} else {
 			repairSuccessfulInfusion(result);
@@ -187,7 +191,11 @@ public final class InfusionTableMenu extends AbstractContainerMenu {
 			return;
 		}
 		double missingRatio = Math.max(0.0, (required - supplied) / (double) required);
-		double damageRatio = 0.10 + 0.25 * missingRatio;
+		var config = LostFragmentsConfig.get().infusion;
+		double minimum = config.failureDamageMinPercent / 100.0;
+		double maximum = config.failureDamageMaxPercent / 100.0;
+		double damageRatio = minimum + Math.max(0.0, maximum - minimum) * missingRatio;
+		if (damageRatio <= 0.0) return;
 		int durabilityDamage = Math.max(1, (int) Math.ceil(stack.getMaxDamage() * damageRatio));
 		stack.setDamageValue(Math.min(stack.getMaxDamage() - 1,
 				stack.getDamageValue() + durabilityDamage));
@@ -197,7 +205,9 @@ public final class InfusionTableMenu extends AbstractContainerMenu {
 		if (!stack.isDamageableItem() || stack.getDamageValue() == 0) {
 			return;
 		}
-		int repaired = Math.max(1, (int) Math.ceil(stack.getMaxDamage() * 0.15));
+		double repairPercent = LostFragmentsConfig.get().infusion.successRepairPercent;
+		if (repairPercent <= 0.0) return;
+		int repaired = Math.max(1, (int) Math.ceil(stack.getMaxDamage() * repairPercent / 100.0));
 		stack.setDamageValue(Math.max(0, stack.getDamageValue() - repaired));
 	}
 

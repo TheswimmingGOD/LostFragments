@@ -28,6 +28,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.TridentItem;
 import net.minecraft.world.item.MaceItem;
+import com.tsg0d.lostfragments.config.LostFragmentsConfig;
 
 public final class LostFragmentsClient implements ClientModInitializer {
 	@Override
@@ -43,19 +44,23 @@ public final class LostFragmentsClient implements ClientModInitializer {
 				lines.add(Component.translatable("tooltip.lostfragments.amethyst_infused")
 						.withStyle(ChatFormatting.LIGHT_PURPLE));
 				if (stack.getItem() instanceof BowItem) {
-					lines.add(Component.translatable("tooltip.lostfragments.infused_bow")
+					lines.add(Component.translatable("tooltip.lostfragments.infused_bow",
+							LostFragmentsConfig.get().bow.arrowCount)
 							.withStyle(ChatFormatting.DARK_PURPLE));
 				} else if (stack.getItem() instanceof TridentItem) {
 					lines.add(Component.translatable("tooltip.lostfragments.infused_trident")
 							.withStyle(ChatFormatting.DARK_PURPLE));
 				} else if (stack.getItem() instanceof MaceItem) {
-					lines.add(Component.translatable("tooltip.lostfragments.infused_mace")
+					lines.add(Component.translatable("tooltip.lostfragments.infused_mace",
+							LostFragmentsConfig.get().mace.radius)
 							.withStyle(ChatFormatting.DARK_PURPLE));
 				} else if (stack.is(ItemTags.SPEARS)) {
-					lines.add(Component.translatable("tooltip.lostfragments.infused_spear")
+					lines.add(Component.translatable("tooltip.lostfragments.infused_spear",
+							LostFragmentsConfig.get().spear.lungeHungerPercent)
 							.withStyle(ChatFormatting.DARK_PURPLE));
 				} else if (InfusionService.isAnimalArmor(stack)) {
-					lines.add(Component.translatable("tooltip.lostfragments.infused_animal_armor")
+					lines.add(Component.translatable("tooltip.lostfragments.infused_animal_armor",
+							LostFragmentsConfig.get().animalArmor.activationChancePercent)
 							.withStyle(ChatFormatting.DARK_PURPLE));
 				}
 			}
@@ -104,16 +109,20 @@ public final class LostFragmentsClient implements ClientModInitializer {
 			if (stack.is(ModItems.INFUSED_BUNDLE)) {
 				int used = stack.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY).items().stream()
 						.mapToInt(template -> template.count()).sum();
-				int capacity = stack.getOrDefault(ModComponents.BUNDLE_CAPACITY, 8);
+				int capacity = stack.getOrDefault(ModComponents.BUNDLE_CAPACITY,
+						LostFragmentsConfig.get().bundle.stableCapacity);
 				lines.add(Component.translatable("tooltip.lostfragments.bundle_capacity", used, capacity)
 						.withStyle(ChatFormatting.LIGHT_PURPLE));
 				lines.add(Component.translatable(InfusionService.isFractured(stack)
-						? "tooltip.lostfragments.bundle_fractured" : "tooltip.lostfragments.bundle_stable")
+						? "tooltip.lostfragments.bundle_fractured" : "tooltip.lostfragments.bundle_stable",
+						LostFragmentsConfig.get().bundle.stableCapacity)
 						.withStyle(ChatFormatting.GRAY));
 			}
 			if (stack.is(ModItems.CATMEN_TALISMAN) && !InfusionService.isFractured(stack)) {
 				lines.add(Component.translatable("tooltip.lostfragments.talisman_uses",
-						stack.getOrDefault(ModComponents.TALISMAN_USES, 8))
+						stack.getOrDefault(ModComponents.TALISMAN_USES,
+								LostFragmentsConfig.get().talisman.uses),
+						LostFragmentsConfig.get().talisman.uses)
 						.withStyle(ChatFormatting.GOLD));
 			}
 			if (stack.is(ModItems.CRACKED_CATMEN_TALISMAN)) {

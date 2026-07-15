@@ -18,6 +18,7 @@ import com.tsg0d.lostfragments.item.ModItems;
 
 import java.util.List;
 import java.util.Optional;
+import com.tsg0d.lostfragments.config.LostFragmentsConfig;
 
 public final class ArmorAbilities {
 	private static final Identifier WALK_SPEED_ID = LostFragments.id("infused_leggings_walk_speed");
@@ -26,15 +27,6 @@ public final class ArmorAbilities {
 	private static final Identifier FALL_REDUCTION_ID = LostFragments.id("infused_boots_fall_reduction");
 	private static final Identifier FULL_SET_HEALTH_ID = LostFragments.id("infused_full_set_health");
 	private static final Identifier FRACTURED_HEALTH_ID = LostFragments.id("fractured_armor_health");
-
-	private static final AttributeModifier WALK_SPEED = new AttributeModifier(
-			WALK_SPEED_ID, 0.10, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
-	private static final AttributeModifier SNEAK_SPEED = new AttributeModifier(
-			SNEAK_SPEED_ID, 0.10, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
-	private static final AttributeModifier SWIM_SPEED = new AttributeModifier(
-			SWIM_SPEED_ID, 0.10, AttributeModifier.Operation.ADD_VALUE);
-	private static final AttributeModifier FALL_REDUCTION = new AttributeModifier(
-			FALL_REDUCTION_ID, -0.25, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL);
 
 	private ArmorAbilities() {
 	}
@@ -48,6 +40,7 @@ public final class ArmorAbilities {
 	}
 
 	private static void tickPlayer(ServerPlayer player) {
+		var config = LostFragmentsConfig.get().armor;
 		ItemStack helmet = player.getItemBySlot(EquipmentSlot.HEAD);
 		ItemStack chestplate = player.getItemBySlot(EquipmentSlot.CHEST);
 		ItemStack leggings = player.getItemBySlot(EquipmentSlot.LEGS);
@@ -69,28 +62,34 @@ public final class ArmorAbilities {
 			applyHiddenEffect(player, MobEffects.NIGHT_VISION, 320, 240, 0);
 		}
 		if (InfusionService.isInfused(chestplate)) {
-			applyHiddenEffect(player, MobEffects.RESISTANCE, 50, 30, 0);
+			applyHiddenEffect(player, MobEffects.RESISTANCE, 50, 30,
+					Math.max(0, config.chestplateResistanceLevel - 1));
 		}
 
-		setModifier(player.getAttribute(Attributes.MOVEMENT_SPEED), WALK_SPEED,
+		setModifier(player.getAttribute(Attributes.MOVEMENT_SPEED), new AttributeModifier(
+				WALK_SPEED_ID, config.leggingsWalkPercent / 100.0, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
 				InfusionService.isInfused(leggings));
-		setModifier(player.getAttribute(Attributes.SNEAKING_SPEED), SNEAK_SPEED,
+		setModifier(player.getAttribute(Attributes.SNEAKING_SPEED), new AttributeModifier(
+				SNEAK_SPEED_ID, config.leggingsCrouchPercent / 100.0, AttributeModifier.Operation.ADD_MULTIPLIED_BASE),
 				InfusionService.isInfused(leggings));
-		setModifier(player.getAttribute(Attributes.WATER_MOVEMENT_EFFICIENCY), SWIM_SPEED,
+		setModifier(player.getAttribute(Attributes.WATER_MOVEMENT_EFFICIENCY), new AttributeModifier(
+				SWIM_SPEED_ID, config.leggingsSwimBonus, AttributeModifier.Operation.ADD_VALUE),
 				InfusionService.isInfused(leggings));
-		setModifier(player.getAttribute(Attributes.FALL_DAMAGE_MULTIPLIER), FALL_REDUCTION,
+		setModifier(player.getAttribute(Attributes.FALL_DAMAGE_MULTIPLIER), new AttributeModifier(
+				FALL_REDUCTION_ID, -config.bootsFallReductionPercent / 100.0, AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL),
 				InfusionService.isInfused(boots));
 
 		List<ItemStack> armor = List.of(helmet, chestplate, leggings, boots);
 		Optional<String> matchingMaterial = matchingInfusedMaterial(armor);
 		AttributeInstance health = player.getAttribute(Attributes.MAX_HEALTH);
 		setModifier(health, new AttributeModifier(FRACTURED_HEALTH_ID,
-				-Math.min(10.0, fracturedArmor), AttributeModifier.Operation.ADD_VALUE), fracturedArmor > 0);
+				-Math.min(config.fracturedHealthLossCap, fracturedArmor * config.fracturedHealthLossPerLevel),
+				AttributeModifier.Operation.ADD_VALUE), fracturedArmor > 0);
 		if (matchingMaterial.isPresent()) {
 			double healthPoints = healthBonus(matchingMaterial.get(), armor);
 			setModifier(health, new AttributeModifier(FULL_SET_HEALTH_ID, healthPoints,
 					AttributeModifier.Operation.ADD_VALUE), true);
-			if (player.tickCount % 20 == 0) {
+			if (player.tickCount % config.fullSetParticleIntervalTicks == 0) {
 				AmethystParticles.fullSetAura(player);
 			}
 		} else {
@@ -158,11 +157,12 @@ public final class ArmorAbilities {
 
 	private static double healthBonus(String material, List<ItemStack> armor) {
 		String path = material.substring(material.indexOf(':') + 1);
-		if (path.contains("leather")) return 1.0;
-		if (path.contains("gold") || path.contains("chain")) return 2.0;
-		if (path.contains("copper") || path.contains("iron")) return 3.0;
-		if (path.contains("diamond")) return 4.0;
-		if (path.contains("netherite")) return 5.0;
+		var config = LostFragmentsConfig.get().armor;
+		if (path.contains("leather")) return config.leatherHealth;
+		if (path.contains("gold") || path.contains("chain")) return config.goldChainHealth;
+		if (path.contains("copper") || path.contains("iron")) return config.copperIronHealth;
+		if (path.contains("diamond")) return config.diamondHealth;
+		if (path.contains("netherite")) return config.netheriteHealth;
 
 		double armorPoints = 0.0;
 		EquipmentSlot[] slots = {EquipmentSlot.HEAD, EquipmentSlot.CHEST, EquipmentSlot.LEGS, EquipmentSlot.FEET};
@@ -171,10 +171,10 @@ public final class ArmorAbilities {
 					DataComponents.ATTRIBUTE_MODIFIERS, ItemAttributeModifiers.EMPTY);
 			armorPoints += modifiers.compute(Attributes.ARMOR, 0.0, slots[i]);
 		}
-		if (armorPoints <= 7.0) return 1.0;
-		if (armorPoints <= 12.0) return 2.0;
-		if (armorPoints <= 17.0) return 3.0;
-		if (armorPoints <= 20.0) return 4.0;
-		return 5.0;
+		if (armorPoints <= 7.0) return config.leatherHealth;
+		if (armorPoints <= 12.0) return config.goldChainHealth;
+		if (armorPoints <= 17.0) return config.copperIronHealth;
+		if (armorPoints <= 20.0) return config.diamondHealth;
+		return config.netheriteHealth;
 	}
 }

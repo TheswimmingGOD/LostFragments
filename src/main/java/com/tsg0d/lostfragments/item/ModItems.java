@@ -17,13 +17,15 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.network.Filterable;
 import net.minecraft.world.item.component.WrittenBookContent;
 import java.util.List;
+import com.tsg0d.lostfragments.config.LostFragmentsConfig;
 
 public final class ModItems {
 	private static final ResourceKey<Item> INFUSED_BUNDLE_KEY = ResourceKey.create(Registries.ITEM, LostFragments.id("infused_bundle"));
 	public static final Item INFUSED_BUNDLE = Registry.register(BuiltInRegistries.ITEM, INFUSED_BUNDLE_KEY,
 			new InfusedBundleItem(infusedProperties().setId(INFUSED_BUNDLE_KEY).stacksTo(1)));
 	public static final Item CATMEN_TALISMAN = register("catmen_talisman",
-			infusedProperties().stacksTo(1).component(ModComponents.TALISMAN_USES, 8));
+			infusedProperties().stacksTo(1).component(ModComponents.TALISMAN_USES,
+					LostFragmentsConfig.get().talisman.uses));
 	public static final Item CRACKED_CATMEN_TALISMAN = register("cracked_catmen_talisman",
 			new Item.Properties().stacksTo(1));
 	public static final Item LOST_CORNER_FRAGMENT = register("lost_corner_fragment", new Item.Properties());
@@ -92,6 +94,7 @@ public final class ModItems {
 				"INFUSED BUNDLE\n\nAny colour works. Stable: 8 non-stackable items. Failed: stackable items only, with random 16-48 capacity. Primary-click inserts; secondary removes.",
 				"CATMEN TALISMAN\n\nCraft the cracked form with Corner Fragments in the corners and Side Fragments on the sides. Infuse with 8 shards. It prevents 8 deaths, even void.",
 				"FRAGMENTS\n\nOne random fragment has an 8% chance in Ancient/End Cities, temples, shipwrecks, buried treasure, and listed suspicious sand or gravel archaeology.",
+				"CONFIGURATION\n\nGameplay numbers can be changed through Lost Fragments' Configure button in Mod Menu, or config/lostfragments.json. Server settings control multiplayer. Some settings need a restart.",
 				"FAILED ITEMS\n\nRed items are inactive. Failures stack: Fracture I costs 2x to retry, II costs 3x, and so on. Full retry cost is safe and clears all Fracture levels."
 		);
 		return new WrittenBookContent(Filterable.passThrough("Book of Infusion"), "tsg0d", 0,

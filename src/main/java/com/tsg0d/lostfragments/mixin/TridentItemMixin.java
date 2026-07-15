@@ -19,11 +19,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import com.tsg0d.lostfragments.config.LostFragmentsConfig;
 
 @Mixin(TridentItem.class)
 public abstract class TridentItemMixin {
-	private static final double DRY_RIPTIDE_CHANCE = 0.35;
-
 	@Inject(method = "use", at = @At("HEAD"), cancellable = true)
 	private void lostfragments$tryDryRiptide(Level level, Player player, InteractionHand hand,
 			CallbackInfoReturnable<InteractionResult> cir) {
@@ -45,12 +44,13 @@ public abstract class TridentItemMixin {
 			return;
 		}
 
-		if (level.getRandom().nextDouble() < DRY_RIPTIDE_CHANCE) {
+		var config = LostFragmentsConfig.get().trident;
+		if (level.getRandom().nextDouble() < config.dryRiptideChancePercent / 100.0) {
 			trident.set(ModComponents.DRY_RIPTIDE_READY, true);
 			player.startUsingItem(hand);
 			cir.setReturnValue(InteractionResult.CONSUME);
 		} else {
-			trident.hurtWithoutBreaking(1, player);
+			trident.hurtWithoutBreaking(config.failedRiptideDurabilityCost, player);
 			ServerLevel serverLevel = (ServerLevel) level;
 			AmethystParticles.burst(serverLevel, player.getX(), player.getY() + 1.0, player.getZ(), 9);
 			level.playSound(null, player.blockPosition(), SoundEvents.AMETHYST_BLOCK_CHIME,

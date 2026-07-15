@@ -28,10 +28,10 @@ public final class AmethystParticles {
 				0.55, 0.8, 0.55, 0.005);
 	}
 
-	public static void gravitySpiral(ServerLevel level, Vec3 center, int age) {
+	public static void gravitySpiral(ServerLevel level, Vec3 center, int age, double fieldRadius) {
 		for (int i = 0; i < 7; i++) {
 			double progress = ((age * 0.16) + i / 7.0) % 1.0;
-			double radius = 4.8 * (1.0 - progress);
+			double radius = fieldRadius * 0.96 * (1.0 - progress);
 			double angle = age * 0.42 + i * (Math.PI * 2.0 / 7.0);
 			double x = center.x + Math.cos(angle) * radius;
 			double z = center.z + Math.sin(angle) * radius;

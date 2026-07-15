@@ -26,6 +26,7 @@ import java.util.Set;
 import com.tsg0d.lostfragments.network.TalismanActivationPayload;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import com.tsg0d.lostfragments.infusion.InfusionService;
+import com.tsg0d.lostfragments.config.LostFragmentsConfig;
 
 public final class TalismanAbilities {
 	private static final Set<ResourceKey<LootTable>> FRAGMENT_LOOT_TABLES = Set.of(
@@ -61,7 +62,8 @@ public final class TalismanAbilities {
 			if (!FRAGMENT_LOOT_TABLES.contains(key)) return;
 			table.withPool(LootPool.lootPool()
 					.setRolls(ConstantValue.exactly(1.0F))
-					.when(LootItemRandomChanceCondition.randomChance(0.08F))
+					.when(LootItemRandomChanceCondition.randomChance(
+							(float) (LostFragmentsConfig.get().talisman.fragmentLootChancePercent / 100.0)))
 					.add(LootItem.lootTableItem(ModItems.LOST_CORNER_FRAGMENT))
 					.add(LootItem.lootTableItem(ModItems.LOST_SIDE_FRAGMENT)));
 		});
@@ -71,7 +73,8 @@ public final class TalismanAbilities {
 		for (int slot = 0; slot < player.getInventory().getContainerSize(); slot++) {
 			ItemStack stack = player.getInventory().getItem(slot);
 			if (stack.is(ModItems.CATMEN_TALISMAN) && InfusionService.isInfused(stack)
-					&& stack.getOrDefault(ModComponents.TALISMAN_USES, 8) > 0) {
+					&& stack.getOrDefault(ModComponents.TALISMAN_USES,
+							LostFragmentsConfig.get().talisman.uses) > 0) {
 				return stack;
 			}
 		}
@@ -79,7 +82,8 @@ public final class TalismanAbilities {
 	}
 
 	private static void activate(ServerPlayer player, DamageSource source, ItemStack talisman) {
-		int uses = talisman.getOrDefault(ModComponents.TALISMAN_USES, 8) - 1;
+		var config = LostFragmentsConfig.get().talisman;
+		int uses = talisman.getOrDefault(ModComponents.TALISMAN_USES, config.uses) - 1;
 		if (uses <= 0) talisman.shrink(1); else talisman.set(ModComponents.TALISMAN_USES, uses);
 
 		if (source.is(DamageTypes.FELL_OUT_OF_WORLD) || player.getY() < player.level().getMinY()) {
@@ -89,12 +93,15 @@ public final class TalismanAbilities {
 					Set.of(), player.getYRot(), player.getXRot(), true);
 		}
 
-		player.setHealth(1.0F);
+		player.setHealth((float) Math.min(player.getMaxHealth(), config.healthAfterSave));
 		player.clearFire();
 		player.removeAllEffects();
-		player.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 900, 1));
-		player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 100, 1));
-		player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE, 800, 0));
+		player.addEffect(new MobEffectInstance(MobEffects.REGENERATION,
+				(int) Math.round(config.regenerationSeconds * 20.0), config.regenerationLevel - 1));
+		player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION,
+				(int) Math.round(config.absorptionSeconds * 20.0), config.absorptionLevel - 1));
+		player.addEffect(new MobEffectInstance(MobEffects.FIRE_RESISTANCE,
+				(int) Math.round(config.fireResistanceSeconds * 20.0), config.fireResistanceLevel - 1));
 		player.level().playSound(null, player.blockPosition(), SoundEvents.TOTEM_USE,
 				SoundSource.PLAYERS, 1.0F, 1.0F);
 		AmethystParticles.burst(player.level(), player.blockPosition(), 40);

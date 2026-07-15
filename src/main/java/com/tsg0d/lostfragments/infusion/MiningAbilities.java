@@ -14,15 +14,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.ArrayDeque;
 import java.util.HashSet;
 import java.util.Set;
+import com.tsg0d.lostfragments.config.LostFragmentsConfig;
 import java.util.UUID;
 
 public final class MiningAbilities {
 	private static final Set<UUID> ACTIVE = new HashSet<>();
-	private static final int MAX_TREE_LOGS = 1_024;
-	private static final int MAX_TREE_RADIUS = 16;
-	private static final int MAX_TREE_HEIGHT_ABOVE = 64;
-	private static final int MAX_TREE_DEPTH_BELOW = 6;
-
 	private MiningAbilities() {
 	}
 
@@ -59,8 +55,9 @@ public final class MiningAbilities {
 
 	private static int clearPlantsThreeByThree(ServerPlayer player, BlockPos origin, ItemStack hoe) {
 		int cleared = 0;
-		for (int x = -1; x <= 1 && !hoe.isEmpty(); x++) {
-			for (int z = -1; z <= 1 && !hoe.isEmpty(); z++) {
+		int radius = LostFragmentsConfig.get().mining.areaRadius;
+		for (int x = -radius; x <= radius && !hoe.isEmpty(); x++) {
+			for (int z = -radius; z <= radius && !hoe.isEmpty(); z++) {
 				BlockPos target = origin.offset(x, 0, z);
 				if (!target.equals(origin) && isHoeClearingTarget(player.level().getBlockState(target))) {
 					if (player.gameMode.destroyBlock(target)) {
@@ -90,8 +87,9 @@ public final class MiningAbilities {
 		Direction facing = player.getDirection();
 		boolean horizontalPlane = Math.abs(player.getXRot()) > 55.0F;
 
-		for (int first = -1; first <= 1; first++) {
-			for (int second = -1; second <= 1; second++) {
+		int radius = LostFragmentsConfig.get().mining.areaRadius;
+		for (int first = -radius; first <= radius; first++) {
+			for (int second = -radius; second <= radius; second++) {
 				BlockPos target;
 				if (horizontalPlane) {
 					target = origin.offset(first, 0, second);
@@ -125,7 +123,7 @@ public final class MiningAbilities {
 		Set<BlockPos> visited = new HashSet<>();
 		pending.add(origin);
 
-		while (!pending.isEmpty() && visited.size() < MAX_TREE_LOGS && !tool.isEmpty()) {
+		while (!pending.isEmpty() && visited.size() < LostFragmentsConfig.get().mining.treeMaxLogs && !tool.isEmpty()) {
 			BlockPos current = pending.removeFirst();
 			if (!visited.add(current) || !insideTreeBounds(current, origin)) {
 				continue;
@@ -155,9 +153,10 @@ public final class MiningAbilities {
 		int xDistance = Math.abs(pos.getX() - origin.getX());
 		int zDistance = Math.abs(pos.getZ() - origin.getZ());
 		int yDistance = pos.getY() - origin.getY();
-		return xDistance <= MAX_TREE_RADIUS
-				&& zDistance <= MAX_TREE_RADIUS
-				&& yDistance >= -MAX_TREE_DEPTH_BELOW
-				&& yDistance <= MAX_TREE_HEIGHT_ABOVE;
+		var c = LostFragmentsConfig.get().mining;
+		return xDistance <= c.treeRadius
+				&& zDistance <= c.treeRadius
+				&& yDistance >= -c.treeDepthBelow
+				&& yDistance <= c.treeHeightAbove;
 	}
 }

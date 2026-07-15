@@ -8,6 +8,7 @@ import com.llamalad7.mixinextras.sugar.Local;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
+import com.tsg0d.lostfragments.config.LostFragmentsConfig;
 
 @Mixin(ApplyExhaustion.class)
 public abstract class ApplyExhaustionMixin {
@@ -16,6 +17,6 @@ public abstract class ApplyExhaustionMixin {
 	private float lostfragments$reduceInfusedSpearLungeCost(float amount,
 			@Local(argsOnly = true) EnchantedItemInUse item) {
 		return item.itemStack().is(ItemTags.SPEARS) && InfusionService.isInfused(item.itemStack())
-				? amount * 0.5F : amount;
+				? amount * (float) (LostFragmentsConfig.get().spear.lungeHungerPercent / 100.0) : amount;
 	}
 }

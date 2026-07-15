@@ -16,6 +16,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import com.tsg0d.lostfragments.config.LostFragmentsConfig;
 
 public final class ResonantChestSavedData extends SavedData {
 	public static final class Network {
@@ -63,7 +64,8 @@ public final class ResonantChestSavedData extends SavedData {
 
 	public boolean canRegister(String frequency, String endpoint) {
 		Network network = networks.get(frequency);
-		return network == null || network.endpoints.contains(endpoint) || network.endpoints.size() < 4;
+		return network == null || network.endpoints.contains(endpoint)
+				|| network.endpoints.size() < LostFragmentsConfig.get().resonantChest.maximumLinkedChests;
 	}
 
 	public NonNullList<ItemStack> removeEndpoint(String frequency, String endpoint) {

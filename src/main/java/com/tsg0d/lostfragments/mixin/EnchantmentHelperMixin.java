@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import com.tsg0d.lostfragments.config.LostFragmentsConfig;
 
 @Mixin(EnchantmentHelper.class)
 public abstract class EnchantmentHelperMixin {
@@ -22,7 +23,7 @@ public abstract class EnchantmentHelperMixin {
 	private static void lostfragments$infusedBowProjectileCount(ServerLevel level, ItemStack weapon,
 			Entity shooter, int baseCount, CallbackInfoReturnable<Integer> cir) {
 		if (weapon.getItem() instanceof BowItem && InfusionService.isInfused(weapon)) {
-			cir.setReturnValue(Math.max(3, cir.getReturnValue()));
+			cir.setReturnValue(Math.max(LostFragmentsConfig.get().bow.arrowCount, cir.getReturnValue()));
 		}
 	}
 
@@ -30,7 +31,7 @@ public abstract class EnchantmentHelperMixin {
 	private static void lostfragments$infusedBowSpread(ServerLevel level, ItemStack weapon,
 			Entity shooter, float baseSpread, CallbackInfoReturnable<Float> cir) {
 		if (weapon.getItem() instanceof BowItem && InfusionService.isInfused(weapon)) {
-			cir.setReturnValue(Math.max(10.0F, cir.getReturnValue()));
+			cir.setReturnValue(Math.max((float) LostFragmentsConfig.get().bow.spreadDegrees, cir.getReturnValue()));
 		}
 	}
 
@@ -46,7 +47,8 @@ public abstract class EnchantmentHelperMixin {
 				.get(Enchantments.IMPALING)
 				.map(holder -> EnchantmentHelper.getItemEnchantmentLevel(holder, weapon)).orElse(0);
 		if (impaling > 0) {
-			cir.setReturnValue(cir.getReturnValue() + 2.5F * impaling);
+			cir.setReturnValue(cir.getReturnValue()
+					+ (float) LostFragmentsConfig.get().trident.impalingDamagePerLevel * impaling);
 		}
 	}
 }

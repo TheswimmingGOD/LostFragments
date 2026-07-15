@@ -22,6 +22,7 @@ import net.minecraft.world.phys.Vec3;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import com.tsg0d.lostfragments.config.LostFragmentsConfig;
 
 public final class TeleportRodAbilities {
 	public static final ResourceKey<Enchantment> ENDER_REACH = ResourceKey.create(
@@ -117,7 +118,7 @@ public final class TeleportRodAbilities {
 		BlockPos pos = BlockPos.of(packed);
 		int enchantmentLevel = player.registryAccess().lookupOrThrow(Registries.ENCHANTMENT)
 				.get(ENDER_REACH).map(holder -> EnchantmentHelper.getItemEnchantmentLevel(holder, rod)).orElse(0);
-		double maximum = 1500.0 * (enchantmentLevel + 1);
+		double maximum = LostFragmentsConfig.get().fishingRod.baseTeleportRange * (enchantmentLevel + 1);
 		if (player.position().distanceToSqr(Vec3.atCenterOf(pos)) > maximum * maximum) {
 			player.sendOverlayMessage(Component.translatable("message.lostfragments.rod_too_far", (int) maximum));
 			return;

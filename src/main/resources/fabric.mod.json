@@ -16,6 +16,9 @@
 		],
 		"client": [
 			"com.tsg0d.lostfragments.client.LostFragmentsClient"
+		],
+		"modmenu": [
+			"com.tsg0d.lostfragments.client.LostFragmentsModMenu"
 		]
 	},
 	"mixins": [

@@ -13,10 +13,9 @@ import net.minecraft.world.phys.Vec3;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import com.tsg0d.lostfragments.config.LostFragmentsConfig;
 
 public final class MaceAbilities {
-	private static final int DURATION_TICKS = 40;
-	private static final double RADIUS = 5.0;
 	private static final List<GravityField> FIELDS = new ArrayList<>();
 
 	private MaceAbilities() {
@@ -37,27 +36,30 @@ public final class MaceAbilities {
 		Iterator<GravityField> iterator = FIELDS.iterator();
 		while (iterator.hasNext()) {
 			GravityField field = iterator.next();
-			if (field.age >= DURATION_TICKS || !field.owner.isAlive()) {
+			var config = LostFragmentsConfig.get().mace;
+			if (field.age >= Math.round(config.durationSeconds * 20.0) || !field.owner.isAlive()) {
 				iterator.remove();
 				continue;
 			}
-			AmethystParticles.gravitySpiral(field.level, field.center, field.age);
-			if (field.age % 4 == 0) pull(field);
+			AmethystParticles.gravitySpiral(field.level, field.center, field.age, config.radius);
+			if (field.age % config.pullIntervalTicks == 0) pull(field);
 			field.age++;
 		}
 	}
 
 	private static void pull(GravityField field) {
+		var config = LostFragmentsConfig.get().mace;
 		List<LivingEntity> targets = field.level.getEntitiesOfClass(LivingEntity.class,
-				new net.minecraft.world.phys.AABB(field.center, field.center).inflate(RADIUS),
+				new net.minecraft.world.phys.AABB(field.center, field.center).inflate(config.radius),
 				entity -> entity != field.owner && entity.isAlive() && !(entity instanceof ArmorStand)
 						&& !field.owner.isAlliedTo(entity));
 		boolean pulled = false;
 		for (LivingEntity target : targets) {
 			Vec3 toward = field.center.subtract(target.position());
 			double distance = toward.length();
-			if (distance < 0.25 || distance > RADIUS || !field.owner.hasLineOfSight(target)) continue;
-			double strength = 0.18 + 0.16 * (distance / RADIUS);
+			if (distance < 0.25 || distance > config.radius || !field.owner.hasLineOfSight(target)) continue;
+			double strength = config.minimumPull
+					+ Math.max(0.0, config.maximumPull - config.minimumPull) * (distance / config.radius);
 			Vec3 motion = toward.normalize().scale(strength);
 			target.push(motion.x, Math.max(-0.04, motion.y * 0.35) + 0.04, motion.z);
 			target.hurtMarked = true;
@@ -66,7 +68,7 @@ public final class MaceAbilities {
 		if (pulled && !field.durabilityCharged) {
 			ItemStack held = field.owner.getMainHandItem();
 			if (InfusionService.isInfused(held) && held.getItem() == field.maceTemplate.getItem()) {
-				held.hurtAndBreak(2, field.owner, EquipmentSlot.MAINHAND);
+				held.hurtAndBreak(config.durabilityCost, field.owner, EquipmentSlot.MAINHAND);
 			}
 			field.durabilityCharged = true;
 		}

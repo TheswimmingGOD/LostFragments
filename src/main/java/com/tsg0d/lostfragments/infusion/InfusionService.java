@@ -26,6 +26,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.equipment.Equippable;
 import net.minecraft.world.item.enchantment.Enchantments;
+import com.tsg0d.lostfragments.config.LostFragmentsConfig;
 
 public final class InfusionService {
 	private InfusionService() {
@@ -102,22 +103,28 @@ public final class InfusionService {
 	}
 
 	private static int baseShardCost(ItemStack stack) {
-		if (stack.is(ItemTags.CHEST_ARMOR)) return 6;
-		if (stack.is(ItemTags.LEG_ARMOR)) return 5;
-		if (stack.is(ItemTags.HEAD_ARMOR) || stack.is(ItemTags.FOOT_ARMOR)) return 4;
-		if (stack.is(ItemTags.PICKAXES) || stack.is(ItemTags.AXES) || stack.is(ItemTags.SWORDS)) return 3;
-		if (stack.is(ItemTags.SHOVELS) || stack.is(ItemTags.HOES)) return 2;
-		if (stack.is(Items.FISHING_ROD)) return 4;
-		if (stack.is(Items.COMPASS)) return 3;
-		if (stack.is(Items.CLOCK)) return 2;
-		if (stack.is(ItemTags.BUNDLES) || stack.is(ModItems.INFUSED_BUNDLE)) return 4;
-		if (stack.is(Items.ENDER_CHEST) || stack.is(ModBlocks.RESONANT_ENDER_CHEST.asItem())) return 8;
-		if (stack.is(ModItems.CRACKED_CATMEN_TALISMAN) || stack.is(ModItems.CATMEN_TALISMAN)) return 8;
-		if (stack.is(Items.BOOK) || stack.is(ModItems.BOOK_OF_INFUSION)) return 1;
-		if (stack.getItem() instanceof BowItem || isAnimalArmor(stack)) return 4;
-		if (stack.is(ItemTags.SPEARS)) return 4;
-		if (stack.getItem() instanceof TridentItem) return 5;
-		if (stack.getItem() instanceof MaceItem) return 6;
+		var c = LostFragmentsConfig.get().infusion;
+		if (stack.is(ItemTags.CHEST_ARMOR)) return c.chestplateCost;
+		if (stack.is(ItemTags.LEG_ARMOR)) return c.leggingsCost;
+		if (stack.is(ItemTags.HEAD_ARMOR)) return c.helmetCost;
+		if (stack.is(ItemTags.FOOT_ARMOR)) return c.bootsCost;
+		if (stack.is(ItemTags.PICKAXES)) return c.pickaxeCost;
+		if (stack.is(ItemTags.AXES)) return c.axeCost;
+		if (stack.is(ItemTags.SWORDS)) return c.swordCost;
+		if (stack.is(ItemTags.SHOVELS)) return c.shovelCost;
+		if (stack.is(ItemTags.HOES)) return c.hoeCost;
+		if (stack.is(Items.FISHING_ROD)) return c.fishingRodCost;
+		if (stack.is(Items.COMPASS)) return c.compassCost;
+		if (stack.is(Items.CLOCK)) return c.clockCost;
+		if (stack.is(ItemTags.BUNDLES) || stack.is(ModItems.INFUSED_BUNDLE)) return c.bundleCost;
+		if (stack.is(Items.ENDER_CHEST) || stack.is(ModBlocks.RESONANT_ENDER_CHEST.asItem())) return c.enderChestCost;
+		if (stack.is(ModItems.CRACKED_CATMEN_TALISMAN) || stack.is(ModItems.CATMEN_TALISMAN)) return c.talismanCost;
+		if (stack.is(Items.BOOK) || stack.is(ModItems.BOOK_OF_INFUSION)) return c.bookCost;
+		if (stack.getItem() instanceof BowItem) return c.bowCost;
+		if (isAnimalArmor(stack)) return c.animalArmorCost;
+		if (stack.is(ItemTags.SPEARS)) return c.spearCost;
+		if (stack.getItem() instanceof TridentItem) return c.tridentCost;
+		if (stack.getItem() instanceof MaceItem) return c.maceCost;
 		return 1;
 	}
 

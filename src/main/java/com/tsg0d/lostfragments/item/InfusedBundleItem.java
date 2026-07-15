@@ -9,6 +9,7 @@ import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import com.tsg0d.lostfragments.config.LostFragmentsConfig;
 import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.component.BundleContents;
 
@@ -43,7 +44,9 @@ public final class InfusedBundleItem extends Item {
 		if (fractured ? source.getMaxStackSize() <= 1 : source.getMaxStackSize() > 1) return false;
 		List<ItemStack> items = contents(bundle);
 		int used = items.stream().mapToInt(ItemStack::getCount).sum();
-		int capacity = fractured ? bundle.getOrDefault(ModComponents.BUNDLE_CAPACITY, 16) : 8;
+		int capacity = fractured ? bundle.getOrDefault(ModComponents.BUNDLE_CAPACITY,
+				LostFragmentsConfig.get().bundle.fracturedMinimumCapacity)
+				: LostFragmentsConfig.get().bundle.stableCapacity;
 		int move = Math.min(source.getCount(), capacity - used);
 		if (move <= 0) return false;
 		for (ItemStack stored : items) {

@@ -11,6 +11,19 @@ Lost Fragments is a Fabric mod for Minecraft 26.1.2 by **tsg0d**. Its main mecha
 
 Supplying the full shard cost always produces a stable infusion. Supplying fewer shards can produce a failed/fractured infusion.
 
+## Configuration
+
+Lost Fragments exposes its gameplay balance values in two places:
+
+- With **Mod Menu** installed, open Mods, select Lost Fragments, and press Configure. The paged editor provides validation, safe ranges, Defaults, Cancel, and Save controls.
+- Edit `config/lostfragments.json` in the Minecraft instance or dedicated-server folder. The file is generated with defaults the first time the mod starts.
+
+The configuration covers shard costs, infusion repair and failure damage, mining area and tree limits, weapon ranges, damage, knockback, cooldowns and durability costs, bow arrows and spread, armor bonuses, trident chances, spear and mace behavior, fishing-rod range, bundle capacities, talisman uses/effects/loot chance, and the Resonant Chest link limit.
+
+Most settings update immediately after saving through Mod Menu. Registration-time settings, including fragment loot-pool chance and the default uses stored on newly created talismans, take full effect after restarting the game or server. On multiplayer servers, gameplay is controlled by the server's `config/lostfragments.json`; clients cannot override it.
+
+Fixed inventory sizes, GUI coordinates, and other save-format or layout constants are intentionally not configurable because changing them would corrupt inventories or break screens.
+
 ## Infusion Table
 
 The Infusion Table is used for every infusion in this mod.
