@@ -10,9 +10,10 @@ public final class AmethystParticles {
 	}
 
 	public static void burst(ServerLevel level, BlockPos center, int count) {
-		double x = center.getX() + 0.5;
-		double y = center.getY() + 0.65;
-		double z = center.getZ() + 0.5;
+		burst(level, center.getX() + 0.5, center.getY() + 0.65, center.getZ() + 0.5, count);
+	}
+
+	public static void burst(ServerLevel level, double x, double y, double z, int count) {
 		level.sendParticles(ParticleTypes.WITCH, x, y, z, count,
 				0.65, 0.45, 0.65, 0.02);
 		level.sendParticles(ParticleTypes.REVERSE_PORTAL, x, y, z, Math.max(4, count / 3),

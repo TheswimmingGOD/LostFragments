@@ -25,6 +25,7 @@ public final class ArmorAbilities {
 	private static final Identifier SWIM_SPEED_ID = LostFragments.id("infused_leggings_swim_speed");
 	private static final Identifier FALL_REDUCTION_ID = LostFragments.id("infused_boots_fall_reduction");
 	private static final Identifier FULL_SET_HEALTH_ID = LostFragments.id("infused_full_set_health");
+	private static final Identifier FRACTURED_HEALTH_ID = LostFragments.id("fractured_armor_health");
 
 	private static final AttributeModifier WALK_SPEED = new AttributeModifier(
 			WALK_SPEED_ID, 0.10, AttributeModifier.Operation.ADD_MULTIPLIED_BASE);
@@ -52,23 +53,23 @@ public final class ArmorAbilities {
 		ItemStack leggings = player.getItemBySlot(EquipmentSlot.LEGS);
 		ItemStack boots = player.getItemBySlot(EquipmentSlot.FEET);
 		int fracturedArmor = countFractured(helmet, chestplate, leggings, boots);
-		boolean fracturedHeld = isFracturedTool(player.getMainHandItem())
-				|| isFracturedTool(player.getOffhandItem());
-		if (fracturedHeld) {
-			applyHiddenEffect(player, MobEffects.WEAKNESS, 50, 30);
+		int fracturedHeld = Math.max(fracturedToolLevel(player.getMainHandItem()),
+				fracturedToolLevel(player.getOffhandItem()));
+		if (fracturedHeld > 0) {
+			applyHiddenEffect(player, MobEffects.WEAKNESS, 50, 30, Math.min(4, fracturedHeld - 1));
 		}
 		if (fracturedArmor > 0) {
-			applyHiddenEffect(player, MobEffects.SLOWNESS, 50, 30);
+			applyHiddenEffect(player, MobEffects.SLOWNESS, 50, 30, Math.min(4, fracturedArmor - 1));
 			if (player.tickCount % 400 < 100) {
-				applyHiddenEffect(player, MobEffects.DARKNESS, 30, 20);
+				applyHiddenEffect(player, MobEffects.DARKNESS, 30, 20, Math.min(4, fracturedArmor - 1));
 			}
 		}
 
 		if (InfusionService.isInfused(helmet)) {
-			applyHiddenEffect(player, MobEffects.NIGHT_VISION, 320, 240);
+			applyHiddenEffect(player, MobEffects.NIGHT_VISION, 320, 240, 0);
 		}
 		if (InfusionService.isInfused(chestplate)) {
-			applyHiddenEffect(player, MobEffects.RESISTANCE, 50, 30);
+			applyHiddenEffect(player, MobEffects.RESISTANCE, 50, 30, 0);
 		}
 
 		setModifier(player.getAttribute(Attributes.MOVEMENT_SPEED), WALK_SPEED,
@@ -83,9 +84,10 @@ public final class ArmorAbilities {
 		List<ItemStack> armor = List.of(helmet, chestplate, leggings, boots);
 		Optional<String> matchingMaterial = matchingInfusedMaterial(armor);
 		AttributeInstance health = player.getAttribute(Attributes.MAX_HEALTH);
+		setModifier(health, new AttributeModifier(FRACTURED_HEALTH_ID,
+				-Math.min(10.0, fracturedArmor), AttributeModifier.Operation.ADD_VALUE), fracturedArmor > 0);
 		if (matchingMaterial.isPresent()) {
-			double healthPoints = Math.max(0.0,
-					healthBonus(matchingMaterial.get(), armor) - fracturedArmor);
+			double healthPoints = healthBonus(matchingMaterial.get(), armor);
 			setModifier(health, new AttributeModifier(FULL_SET_HEALTH_ID, healthPoints,
 					AttributeModifier.Operation.ADD_VALUE), true);
 			if (player.tickCount % 20 == 0) {
@@ -96,24 +98,24 @@ public final class ArmorAbilities {
 		}
 	}
 
-	private static boolean isFracturedTool(ItemStack stack) {
-		return InfusionService.isFractured(stack) && !stack.is(ModItems.INFUSED_BUNDLE);
+	private static int fracturedToolLevel(ItemStack stack) {
+		return !stack.is(ModItems.INFUSED_BUNDLE) ? InfusionService.fractureLevel(stack) : 0;
 	}
 
 	private static int countFractured(ItemStack... stacks) {
 		int count = 0;
 		for (ItemStack stack : stacks) {
-			if (InfusionService.isFractured(stack)) count++;
+			count += InfusionService.fractureLevel(stack);
 		}
 		return count;
 	}
 
 	private static void applyHiddenEffect(ServerPlayer player,
 			net.minecraft.core.Holder<net.minecraft.world.effect.MobEffect> effect,
-			int duration, int refreshAt) {
+			int duration, int refreshAt, int amplifier) {
 		MobEffectInstance current = player.getEffect(effect);
-		if (current == null || current.getDuration() < refreshAt) {
-			player.addEffect(new MobEffectInstance(effect, duration, 0, true, false, true));
+		if (current == null || current.getDuration() < refreshAt || current.getAmplifier() != amplifier) {
+			player.addEffect(new MobEffectInstance(effect, duration, amplifier, true, false, true));
 		}
 	}
 

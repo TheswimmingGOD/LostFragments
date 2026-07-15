@@ -18,8 +18,12 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.BowItem;
+import net.minecraft.world.item.TridentItem;
 import com.tsg0d.lostfragments.item.ModItems;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.equipment.Equippable;
 import net.minecraft.world.item.enchantment.Enchantments;
 
 public final class InfusionService {
@@ -47,7 +51,10 @@ public final class InfusionService {
 				|| stack.is(ModItems.CRACKED_CATMEN_TALISMAN)
 				|| stack.is(ModItems.CATMEN_TALISMAN)
 				|| stack.is(Items.BOOK)
-				|| stack.is(ModItems.BOOK_OF_INFUSION);
+				|| stack.is(ModItems.BOOK_OF_INFUSION)
+				|| stack.getItem() instanceof BowItem
+				|| stack.getItem() instanceof TridentItem
+				|| isAnimalArmor(stack);
 				
 				
 				
@@ -70,12 +77,25 @@ public final class InfusionService {
 	}
 
 	public static boolean isFractured(ItemStack stack) {
-		return stack.getOrDefault(ModComponents.FRACTURED_INFUSION, false);
+		return fractureLevel(stack) > 0;
+	}
+
+	public static int fractureLevel(ItemStack stack) {
+		int level = stack.getOrDefault(ModComponents.FRACTURE_LEVEL, 0);
+		if (level == 0 && stack.getOrDefault(ModComponents.FRACTURED_INFUSION, false)) {
+			return 1;
+		}
+		return Math.max(0, level);
+	}
+
+	public static boolean isAnimalArmor(ItemStack stack) {
+		Equippable equippable = stack.get(DataComponents.EQUIPPABLE);
+		return equippable != null && equippable.slot() == EquipmentSlot.BODY;
 	}
 
 	public static int requiredShards(ItemStack stack) {
 		int base = baseShardCost(stack);
-		return isFractured(stack) ? base * 2 : base;
+		return base * (fractureLevel(stack) + 1);
 	}
 
 	private static int baseShardCost(ItemStack stack) {
@@ -91,6 +111,8 @@ public final class InfusionService {
 		if (stack.is(Items.ENDER_CHEST) || stack.is(ModBlocks.RESONANT_ENDER_CHEST.asItem())) return 8;
 		if (stack.is(ModItems.CRACKED_CATMEN_TALISMAN) || stack.is(ModItems.CATMEN_TALISMAN)) return 8;
 		if (stack.is(Items.BOOK) || stack.is(ModItems.BOOK_OF_INFUSION)) return 1;
+		if (stack.getItem() instanceof BowItem || isAnimalArmor(stack)) return 4;
+		if (stack.getItem() instanceof TridentItem) return 5;
 		return 1;
 	}
 

@@ -46,7 +46,10 @@ The Infusion Table is used for every infusion in this mod.
 | Boots | 4 |
 | Fishing Rod | 4 |
 | Bundle of any colour | 4 |
+| Bow | 4 |
+| Animal armor (BODY slot) | 4 |
 | Leggings | 5 |
+| Trident | 5 |
 | Chestplate | 6 |
 | Ender Chest | 8 |
 | Cracked Catmen Talisman | 8 |
@@ -55,7 +58,7 @@ Infusion supports vanilla equipment and modded tools or armor that use the norma
 
 ## Stable and failed infusions
 
-Infused items do not receive an enchantment glint. A purple corner overlay distinguishes stable infused items in inventories.
+Infusion does not add an enchantment glint. Items that were already enchanted keep their enchantments and normal glint. A purple corner overlay distinguishes stable infused items in inventories.
 
 When fewer shards than required are supplied, the failure chance is:
 
@@ -69,12 +72,14 @@ A failed infusion is clearly identified by:
 - A red name beginning with **Failed Infusion**.
 - A bold red **INFUSION FAILED** tooltip.
 
-Failed equipment has **none of the positive infused abilities**. It can be placed back into the Infusion Table and retried. A retry costs twice the item's normal shard cost; supplying that full retry cost guarantees success.
+Failed equipment has **none of the positive infused abilities**. Failures accumulate Fracture levels. Fracture I costs twice the normal shard cost to retry, Fracture II costs three times, Fracture III costs four times, and so on. Supplying the complete displayed retry cost guarantees success and clears every Fracture level.
+
+Successful infusion repairs 15% of the item's maximum durability, capped at full durability. Failed infusion damages durable items by approximately 10-35% of maximum durability according to the proportion of missing shards. Failure damage stacks with existing damage but leaves at least one durability.
 
 Failed items still receive the applicable penalty until repaired:
 
-- Failed tools and most held utility items cause Weakness I while held in either hand.
-- Failed armor causes Slowness I while worn and pulses Darkness for five seconds every twenty seconds.
+- Failed tools and most held utility items cause Weakness while held; its level increases with Fracture level.
+- Failed armor causes scaling Slowness, periodically pulses scaling Darkness, and reduces maximum health more at higher total Fracture levels.
 - Potion-effect particles are hidden.
 - Failed armor cannot contribute to a matching full-set health bonus.
 - Failed bundles use their special reduced-storage rules and do not cause Weakness.
@@ -121,11 +126,47 @@ The hoe has two 3×3 abilities. Both work horizontally regardless of the directi
 
 ## Infused Sword
 
-- Right-click to release a knockback pulse in a 2.5-block radius.
+- Right-click to release a knockback pulse in a 3-block radius.
 - The pulse deals no direct damage.
 - It ignores the user, allies, pets/allied entities, and targets behind walls.
 - Every activation costs four sword durability and starts a six-second cooldown, even when it misses.
 - Purple particles appear only if an entity is actually moved.
+
+## Infused Bow
+
+- Fires three arrows per shot: one centered and two with a 10-degree horizontal spread.
+- Consumes one arrow and one normal bow-durability use per volley.
+- Power, Punch, Flame, Infinity, Unbreaking, Mending, tipped arrows, and spectral arrows continue to work normally.
+- Only the centered arrow can be recovered, preventing duplicated special arrows.
+- Purple particles appear when the volley is fired.
+
+## Infused Animal Armor
+
+- Supports vanilla and compatible modded armor that equips in the BODY slot, including Wolf Armor and Horse Armor.
+- Each melee hit against the armored animal has a 40% chance to activate.
+- Activation deals 2 damage (one heart) to the attacker and knocks it backward.
+- The reaction has a one-second cooldown and does not retaliate against projectile shooters.
+- Purple particles and an amethyst sound appear only when it activates.
+
+## Infused Trident
+
+The abilities check the trident's current enchantments whenever it is used, so supported enchantments added after infusion work too.
+
+### Channeling
+
+- Summons lightning in clear or rainy weather as well as thunderstorms.
+- The struck target must still be beneath open sky.
+
+### Impaling
+
+- Applies its bonus damage to any mob touching water or exposed to rain, not only normally Impaling-sensitive aquatic mobs.
+- Works for both melee and thrown trident hits.
+
+### Riptide
+
+- Normal use in water or rain remains guaranteed.
+- On dry land, each attempt has a 35% chance to permit a normal Riptide launch.
+- A failed dry attempt consumes durability and produces a small purple particle sputter.
 
 ## Infused Armor
 
@@ -313,5 +354,5 @@ Infuse the result with eight amethyst shards to create a Catmen Talisman.
 
 - Stable infused items: purple inventory-corner overlay.
 - Failed infused items: red overlay, red name, and failure tooltip.
-- No forced enchantment glint.
+- No forced enchantment glint; enchanted items retain their normal glint.
 - Tool ability particles appear only when the ability affects something, except effects such as the full armor-set aura and talisman rescue that intentionally indicate an active state.

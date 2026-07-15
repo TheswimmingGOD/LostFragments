@@ -10,6 +10,7 @@ import com.tsg0d.lostfragments.infusion.ArmorAbilities;
 import com.tsg0d.lostfragments.infusion.SwordAbilities;
 import com.tsg0d.lostfragments.infusion.UtilityItemAbilities;
 import com.tsg0d.lostfragments.infusion.TeleportRodAbilities;
+import com.tsg0d.lostfragments.infusion.AnimalArmorAbilities;
 import com.tsg0d.lostfragments.menu.ModMenus;
 import com.tsg0d.lostfragments.item.ModItems;
 import com.tsg0d.lostfragments.item.FirstJoinBookGift;
@@ -38,6 +39,7 @@ public final class LostFragments implements ModInitializer {
 		SwordAbilities.initialize();
 		UtilityItemAbilities.initialize();
 		TeleportRodAbilities.initialize();
+		AnimalArmorAbilities.initialize();
 		TalismanAbilities.initialize();
 		LOGGER.info("Initializing Lost Fragments");
 	}

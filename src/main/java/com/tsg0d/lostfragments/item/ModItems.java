@@ -68,12 +68,17 @@ public final class ModItems {
 				"LOST FRAGMENTS\n\nWelcome! Every player receives this book once when first joining a world. It explains amethyst infusion and every current item.",
 				"INFUSION TABLE\n\nRecipe:\nA E A\nO C O\nO O O\n\nA: Amethyst Block\nE: Echo Shard\nO: Obsidian\nC: Crafting Table",
 				"HOW TO INFUSE\n\nPlace an eligible item left, amethyst shards in the middle, then take the result. Purple means stable. Red and 'INFUSION FAILED' means fractured.",
-				"FAILURE RISK\n\nFull shard cost is safe. With fewer shards, risk = missing / required. Failed items have no infused ability. Re-infuse them for twice the normal cost.",
+				"FAILURE RISK\n\nFull shard cost is safe. With fewer shards, risk = missing / required. Each failure adds a Fracture level; retry cost is base cost x (level + 1).",
 				"SHARD COSTS I\n\n2: Shovel, Hoe, Clock\n3: Pickaxe, Axe, Sword, Compass\n4: Helmet, Boots, Fishing Rod, Bundle",
-				"SHARD COSTS II\n\n5: Leggings\n6: Chestplate\n8: Ender Chest, Cracked Catmen Talisman\n1: Book\n\nModded tagged tools and armor are supported.",
+				"SHARD COSTS II\n\n4: Bow, Animal Armor\n5: Leggings, Trident\n6: Chestplate\n8: Ender Chest, Cracked Talisman\n1: Book\n\nCompatible modded items are supported.",
+				"DURABILITY\n\nA successful infusion repairs 15% of maximum durability. A failure damages durable items by about 10-35%, scaled by missing shards, but never destroys them.",
 				"MINING TOOLS\n\nSneak while breaking. Pickaxes and shovels mine 3x3. Axes fell connected logs, including built structures. Extra blocks use normal durability.",
 				"INFUSED HOE\n\nSneak-right-click the top of soil to till 3x3. Sneak-break crops, flowers, grass, dry grass, ferns, large ferns, or leaf litter to clear 3x3.",
 				"INFUSED SWORD\n\nRight-click for a harmless knockback pulse in a 3-block radius. It costs 4 durability and has a 6-second cooldown, even if it misses.",
+				"INFUSED BOW\n\nFires 3 arrows with a slight spread while consuming 1 arrow and normal volley durability. Bow enchantments apply; only the center arrow can be recovered.",
+				"ANIMAL ARMOR\n\nInfused BODY-slot armor has a 40% chance when its animal takes a melee hit to deal 1 heart and knock the attacker back. Cooldown: 1 second.",
+				"TRIDENT I\n\nChanneling summons lightning in clear weather when the target has open sky. Impaling affects any mob touching water or exposed to rain.",
+				"TRIDENT II\n\nDry Riptide attempts have a 35% chance to work. Failed attempts still cost durability. Abilities check current enchantments, including ones added later.",
 				"INFUSED ARMOR I\n\nHelmet: Night Vision\nChestplate: Resistance I\nLeggings: +10% walking and crouching speed, plus improved swimming.",
 				"INFUSED ARMOR II\n\nBoots: 25% less fall damage and no farmland trampling. A stable same-material full set adds health by tier and creates a purple aura.",
 				"TELEPORT ROD\n\nHold a pearl in the other hand and sneak-right-click to load. Cast to save a point. Right-click later to teleport. Same dimension; base range 1500.",
@@ -84,7 +89,7 @@ public final class ModItems {
 				"INFUSED BUNDLE\n\nAny colour works. Stable: 8 non-stackable items. Failed: stackable items only, with random 16-48 capacity. Primary-click inserts; secondary removes.",
 				"CATMEN TALISMAN\n\nCraft the cracked form with Corner Fragments in the corners and Side Fragments on the sides. Infuse with 8 shards. It prevents 8 deaths, even void.",
 				"FRAGMENTS\n\nOne random fragment has an 8% chance in Ancient/End Cities, temples, shipwrecks, buried treasure, and listed suspicious sand or gravel archaeology.",
-				"FAILED ITEMS\n\nRed items are inactive. Put one back in the Infusion Table. Its retry cost is double the listed normal cost; paying the full retry cost is guaranteed safe."
+				"FAILED ITEMS\n\nRed items are inactive. Failures stack: Fracture I costs 2x to retry, II costs 3x, and so on. Full retry cost is safe and clears all Fracture levels."
 		);
 		return new WrittenBookContent(Filterable.passThrough("Book of Infusion"), "tsg0d", 0,
 				text.stream().map(page -> Filterable.passThrough((Component) Component.literal(page))).toList(), true);

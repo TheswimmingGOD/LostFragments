@@ -4,8 +4,12 @@
   "container.lostfragments.infusion_table": "Amethyst Infusion",
   "container.lostfragments.infusion_status": "Shards: %s/%s  Risk: %s%%",
   "tooltip.lostfragments.amethyst_infused": "Amethyst Infused",
-  "tooltip.lostfragments.fractured_infusion": "Fractured Infusion — Weakness I",
-  "tooltip.lostfragments.fractured_armor": "Fractured — Slowness I and Darkness",
+  "tooltip.lostfragments.fractured_infusion": "Fractured item - Weakness level %s while held",
+  "tooltip.lostfragments.fractured_armor": "Fractured armor - penalties scale with level %s",
+  "tooltip.lostfragments.fracture_level": "Fracture Level: %s",
+  "tooltip.lostfragments.infused_bow": "Amethyst Multishot: 3 arrows",
+  "tooltip.lostfragments.infused_animal_armor": "Reactive Defense: 40% chance",
+  "tooltip.lostfragments.infused_trident": "Empowered trident enchantments",
   "tooltip.lostfragments.tracking": "Tracking: %s",
   "tooltip.lostfragments.no_target": "No target",
   "message.lostfragments.infusion_hint": "Hold equipment in one hand and an amethyst shard in the other",
@@ -27,7 +31,7 @@
   ,"item.lostfragments.infused_colored_bundle": "Infused %s"
   ,"item.lostfragments.failed_infusion": "Failed Infusion: %s"
   ,"tooltip.lostfragments.infusion_failed": "INFUSION FAILED"
-  ,"tooltip.lostfragments.retry_infusion": "Inactive - re-infuse for twice the normal shard cost"
+  ,"tooltip.lostfragments.retry_infusion": "Inactive - safe retry cost: %s amethyst shards"
   ,"item.lostfragments.catmen_talisman": "Catmen Talisman"
   ,"item.lostfragments.cracked_catmen_talisman": "Cracked Catmen Talisman"
   ,"item.lostfragments.lost_corner_fragment": "Lost Corner Fragment"

@@ -116,14 +116,15 @@ public final class InfusionTableMenu extends AbstractContainerMenu {
 				double fractureChance = (required - supplied) / (double) required;
 				failed = owner.getRandom().nextDouble() < fractureChance;
 			}
-			result = createInfusionResult(equipment, failed);
+			result = createInfusionResult(equipment, failed, supplied, required);
 		}
 		container.setItem(RESULT_SLOT, result);
 		updating = false;
 		broadcastChanges();
 	}
 
-	private ItemStack createInfusionResult(ItemStack equipment, boolean failed) {
+	private ItemStack createInfusionResult(ItemStack equipment, boolean failed, int supplied, int required) {
+		int previousFractureLevel = InfusionService.fractureLevel(equipment);
 		boolean keepOriginal = failed && (equipment.is(Items.ENDER_CHEST)
 				|| equipment.is(ModItems.CRACKED_CATMEN_TALISMAN) || equipment.is(Items.BOOK));
 		ItemStack result;
@@ -148,6 +149,7 @@ public final class InfusionTableMenu extends AbstractContainerMenu {
 		}
 
 		result.remove(ModComponents.FRACTURED_INFUSION);
+		result.remove(ModComponents.FRACTURE_LEVEL);
 		result.remove(DataComponents.CUSTOM_NAME);
 		result.remove(ModComponents.BUNDLE_CAPACITY);
 		result.set(ModComponents.AMETHYST_INFUSED, true);
@@ -164,6 +166,8 @@ public final class InfusionTableMenu extends AbstractContainerMenu {
 		}
 		if (failed) {
 			result.set(ModComponents.FRACTURED_INFUSION, true);
+			result.set(ModComponents.FRACTURE_LEVEL, previousFractureLevel + 1);
+			applyFailureDamage(result, supplied, required);
 			result.set(DataComponents.CUSTOM_NAME, Component.translatable(
 					"item.lostfragments.failed_infusion", result.getHoverName())
 					.withStyle(ChatFormatting.RED));
@@ -172,8 +176,29 @@ public final class InfusionTableMenu extends AbstractContainerMenu {
 				result.set(ModComponents.BUNDLE_CAPACITY,
 						oldCapacity > 0 ? oldCapacity : 16 + owner.getRandom().nextInt(33));
 			}
+		} else {
+			repairSuccessfulInfusion(result);
 		}
 		return result;
+	}
+
+	private static void applyFailureDamage(ItemStack stack, int supplied, int required) {
+		if (!stack.isDamageableItem()) {
+			return;
+		}
+		double missingRatio = Math.max(0.0, (required - supplied) / (double) required);
+		double damageRatio = 0.10 + 0.25 * missingRatio;
+		int durabilityDamage = Math.max(1, (int) Math.ceil(stack.getMaxDamage() * damageRatio));
+		stack.setDamageValue(Math.min(stack.getMaxDamage() - 1,
+				stack.getDamageValue() + durabilityDamage));
+	}
+
+	private static void repairSuccessfulInfusion(ItemStack stack) {
+		if (!stack.isDamageableItem() || stack.getDamageValue() == 0) {
+			return;
+		}
+		int repaired = Math.max(1, (int) Math.ceil(stack.getMaxDamage() * 0.15));
+		stack.setDamageValue(Math.max(0, stack.getDamageValue() - repaired));
 	}
 
 	@Override

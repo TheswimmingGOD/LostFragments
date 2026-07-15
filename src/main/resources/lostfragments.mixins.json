@@ -3,7 +3,12 @@
   "package": "com.tsg0d.lostfragments.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
-    "FarmlandBlockMixin"
+    "FarmlandBlockMixin",
+    "EnchantmentHelperMixin",
+    "BowItemMixin",
+    "ProjectileWeaponItemMixin",
+    "TridentItemMixin",
+    "ThrownTridentMixin"
   ],
   "injectors": {
     "defaultRequire": 1
