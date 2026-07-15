@@ -48,9 +48,11 @@ The Infusion Table is used for every infusion in this mod.
 | Bundle of any colour | 4 |
 | Bow | 4 |
 | Animal armor (BODY slot) | 4 |
+| Spear | 4 |
 | Leggings | 5 |
 | Trident | 5 |
 | Chestplate | 6 |
+| Mace | 6 |
 | Ender Chest | 8 |
 | Cracked Catmen Talisman | 8 |
 
@@ -167,6 +169,25 @@ The abilities check the trident's current enchantments whenever it is used, so s
 - Normal use in water or rain remains guaranteed.
 - On dry land, each attempt has a 35% chance to permit a normal Riptide launch.
 - A failed dry attempt consumes durability and produces a small purple particle sputter.
+
+## Infused Spear
+
+- Supports every vanilla spear and compatible modded items in Minecraft's spear item tag.
+- Sneak and hold use to enter **Resonant Brace** instead of preparing a normal spear charge.
+- The player is heavily slowed while bracing.
+- A fast enemy entering the forward guard is struck, stopped, and knocked backward. Enemies approaching from behind bypass the brace.
+- Counter damage scales from 4 to 8 damage according to the enemy's approach speed.
+- Each successful counter costs one spear durability, and the same enemy cannot be countered more than once per second.
+- Purple particles appear only when a counter succeeds.
+- Lunge on an infused spear consumes 50% less hunger/exhaustion: 0.5, 1, or 1.5 hunger at Lunge I, II, or III instead of 1, 2, or 3.
+
+## Infused Mace
+
+- A successful smash attack creates an **Amethyst Gravity Field** at the impact point.
+- The field lasts two seconds and pulls hostile or non-allied living enemies within five blocks toward its center several times per second.
+- The pull itself deals no damage and ignores the wielder, allies, pets, armor stands, items, and projectiles.
+- Purple particles spiral inward while the field is active.
+- The ability costs two additional mace durability only if at least one enemy is actually pulled.
 
 ## Infused Armor
 

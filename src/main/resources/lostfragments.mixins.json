@@ -9,6 +9,8 @@
     "ProjectileWeaponItemMixin",
     "TridentItemMixin",
     "ThrownTridentMixin"
+    ,"MaceItemMixin"
+    ,"ApplyExhaustionMixin"
   ],
   "injectors": {
     "defaultRequire": 1

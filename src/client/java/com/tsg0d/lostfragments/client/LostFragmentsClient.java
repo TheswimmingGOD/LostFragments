@@ -27,6 +27,7 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.TridentItem;
+import net.minecraft.world.item.MaceItem;
 
 public final class LostFragmentsClient implements ClientModInitializer {
 	@Override
@@ -46,6 +47,12 @@ public final class LostFragmentsClient implements ClientModInitializer {
 							.withStyle(ChatFormatting.DARK_PURPLE));
 				} else if (stack.getItem() instanceof TridentItem) {
 					lines.add(Component.translatable("tooltip.lostfragments.infused_trident")
+							.withStyle(ChatFormatting.DARK_PURPLE));
+				} else if (stack.getItem() instanceof MaceItem) {
+					lines.add(Component.translatable("tooltip.lostfragments.infused_mace")
+							.withStyle(ChatFormatting.DARK_PURPLE));
+				} else if (stack.is(ItemTags.SPEARS)) {
+					lines.add(Component.translatable("tooltip.lostfragments.infused_spear")
 							.withStyle(ChatFormatting.DARK_PURPLE));
 				} else if (InfusionService.isAnimalArmor(stack)) {
 					lines.add(Component.translatable("tooltip.lostfragments.infused_animal_armor")

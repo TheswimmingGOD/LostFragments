@@ -20,6 +20,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.BowItem;
 import net.minecraft.world.item.TridentItem;
+import net.minecraft.world.item.MaceItem;
 import com.tsg0d.lostfragments.item.ModItems;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -54,6 +55,8 @@ public final class InfusionService {
 				|| stack.is(ModItems.BOOK_OF_INFUSION)
 				|| stack.getItem() instanceof BowItem
 				|| stack.getItem() instanceof TridentItem
+				|| stack.getItem() instanceof MaceItem
+				|| stack.is(ItemTags.SPEARS)
 				|| isAnimalArmor(stack);
 				
 				
@@ -112,7 +115,9 @@ public final class InfusionService {
 		if (stack.is(ModItems.CRACKED_CATMEN_TALISMAN) || stack.is(ModItems.CATMEN_TALISMAN)) return 8;
 		if (stack.is(Items.BOOK) || stack.is(ModItems.BOOK_OF_INFUSION)) return 1;
 		if (stack.getItem() instanceof BowItem || isAnimalArmor(stack)) return 4;
+		if (stack.is(ItemTags.SPEARS)) return 4;
 		if (stack.getItem() instanceof TridentItem) return 5;
+		if (stack.getItem() instanceof MaceItem) return 6;
 		return 1;
 	}
 

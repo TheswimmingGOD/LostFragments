@@ -10,6 +10,8 @@
   "tooltip.lostfragments.infused_bow": "Amethyst Multishot: 3 arrows",
   "tooltip.lostfragments.infused_animal_armor": "Reactive Defense: 40% chance",
   "tooltip.lostfragments.infused_trident": "Empowered trident enchantments",
+  "tooltip.lostfragments.infused_mace": "Amethyst Gravity Field: 5-block pull",
+  "tooltip.lostfragments.infused_spear": "Resonant Brace; Lunge stamina cost halved",
   "tooltip.lostfragments.tracking": "Tracking: %s",
   "tooltip.lostfragments.no_target": "No target",
   "message.lostfragments.infusion_hint": "Hold equipment in one hand and an amethyst shard in the other",

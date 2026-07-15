@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.phys.Vec3;
 
 public final class AmethystParticles {
 	private AmethystParticles() {
@@ -25,5 +26,17 @@ public final class AmethystParticles {
 		level.sendParticles(ParticleTypes.WITCH,
 				player.getX(), player.getY() + 1.0, player.getZ(), 5,
 				0.55, 0.8, 0.55, 0.005);
+	}
+
+	public static void gravitySpiral(ServerLevel level, Vec3 center, int age) {
+		for (int i = 0; i < 7; i++) {
+			double progress = ((age * 0.16) + i / 7.0) % 1.0;
+			double radius = 4.8 * (1.0 - progress);
+			double angle = age * 0.42 + i * (Math.PI * 2.0 / 7.0);
+			double x = center.x + Math.cos(angle) * radius;
+			double z = center.z + Math.sin(angle) * radius;
+			double y = center.y + 0.15 + progress * 0.7;
+			level.sendParticles(ParticleTypes.WITCH, x, y, z, 1, 0.0, 0.0, 0.0, 0.0);
+		}
 	}
 }
