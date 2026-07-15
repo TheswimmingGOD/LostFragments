@@ -15,7 +15,7 @@ Supplying the full shard cost always produces a stable infusion. Supplying fewer
 
 Lost Fragments exposes its gameplay balance values in two places:
 
-- With **Mod Menu** installed, open Mods, select Lost Fragments, and press Configure. The paged editor provides validation, safe ranges, Defaults, Cancel, and Save controls.
+- With **Mod Menu** installed, open Mods, select Lost Fragments, and press Configure. Click a category, then a section such as Spear or Armor. Focused setting pages show short labels with their allowed ranges and provide validation, section defaults, Reset All, Cancel, Back, and Save controls.
 - Edit `config/lostfragments.json` in the Minecraft instance or dedicated-server folder. The file is generated with defaults the first time the mod starts.
 
 The configuration covers shard costs, infusion repair and failure damage, mining area and tree limits, weapon ranges, damage, knockback, cooldowns and durability costs, bow arrows and spread, armor bonuses, trident chances, spear and mace behavior, fishing-rod range, bundle capacities, talisman uses/effects/loot chance, and the Resonant Chest link limit.

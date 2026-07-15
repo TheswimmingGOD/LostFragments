@@ -49,6 +49,9 @@
   ,"config.lostfragments.title": "Lost Fragments Configuration"
   ,"config.lostfragments.page": "Page %s of %s"
   ,"config.lostfragments.reset": "Defaults"
+  ,"config.lostfragments.reset_all": "Reset All"
+  ,"config.lostfragments.defaults": "Section Defaults"
+  ,"config.lostfragments.choose_category": "Choose a category"
   ,"config.lostfragments.save": "Save"
   ,"config.lostfragments.invalid": "Invalid value: %s"
 }
