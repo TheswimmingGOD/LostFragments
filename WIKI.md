@@ -159,11 +159,11 @@ The hoe has two 3×3 abilities. Both work horizontally regardless of the directi
 ## Infused Crossbow
 
 - Fires and consumes ordinary crossbow ammunition normally.
-- A visible lead-like tether connects the shooter to the fired arrow.
+- A purple particle string connects the shooter to the fired arrow. It is purely visual: no helper mob or Lead item is created.
 - Hitting a block anchors the arrow and pulls the shooter toward it.
 - Hitting an entity pulls that entity toward the shooter after the arrow deals its normal damage.
 - The hook stops when the target reaches the shooter, the shooter reaches the anchor, the infused crossbow is switched away, or the line exceeds 64 blocks.
-- Crossbow enchantments and special arrow types continue to work normally.
+- Special arrow types and crossbow enchantments continue to work, except Multishot is disabled so each shot creates exactly one hook.
 
 ## Infused Animal Armor
 

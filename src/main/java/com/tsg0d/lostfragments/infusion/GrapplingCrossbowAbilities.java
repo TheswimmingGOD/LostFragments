@@ -7,8 +7,6 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.monster.Silverfish;
 import net.minecraft.world.entity.projectile.arrow.AbstractArrow;
 import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.ItemStack;
@@ -27,6 +25,7 @@ import java.util.WeakHashMap;
 
 public final class GrapplingCrossbowAbilities {
 	private static final Map<AbstractArrow, Hook> BY_ARROW = new IdentityHashMap<>();
+	private static final Map<ServerPlayer, Hook> BY_OWNER = new IdentityHashMap<>();
 	private static final Set<AbstractArrow> SEEN_ARROWS = Collections.newSetFromMap(new WeakHashMap<>());
 	private static final List<Hook> HOOKS = new ArrayList<>();
 
@@ -45,20 +44,13 @@ public final class GrapplingCrossbowAbilities {
 		if (!(weapon.getItem() instanceof CrossbowItem) || !InfusionService.isInfused(weapon)) return;
 
 		SEEN_ARROWS.add(arrow);
+		Hook current = BY_OWNER.get(owner);
+		if (current != null && current.createdAt == level.getGameTime()) return;
 		clearOwnerHook(owner);
-		Silverfish tether = new Silverfish(EntityType.SILVERFISH, level);
-		tether.setNoAi(true);
-		tether.setSilent(true);
-		tether.setInvisible(true);
-		tether.setInvulnerable(true);
-		tether.setNoGravity(true);
-		tether.setPos(arrow.position());
-		level.addFreshEntity(tether);
-		tether.setLeashedTo(owner, false);
-
-		Hook hook = new Hook(owner, arrow, tether);
+		Hook hook = new Hook(owner, arrow);
 		HOOKS.add(hook);
 		BY_ARROW.put(arrow, hook);
+		BY_OWNER.put(owner, hook);
 	}
 
 	public static void latchBlock(AbstractArrow arrow, BlockHitResult hit) {
@@ -117,9 +109,9 @@ public final class GrapplingCrossbowAbilities {
 				continue;
 			}
 
-			hook.tether.setPos(endpoint);
-			hook.tether.setDeltaMovement(Vec3.ZERO);
-			hook.tether.setLeashedTo(hook.owner, false);
+			if (hook.owner.level().getGameTime() % 2 == 0) {
+				AmethystParticles.tether((ServerLevel) hook.owner.level(), hook.owner.getEyePosition(), endpoint);
+			}
 
 			if (!hook.attached) continue;
 			if (distance <= LostFragmentsConfig.get().crossbow.stoppingDistance) {
@@ -133,7 +125,7 @@ public final class GrapplingCrossbowAbilities {
 	}
 
 	private static boolean valid(Hook hook) {
-		if (!hook.owner.isAlive() || hook.owner.hasDisconnected() || hook.tether.isRemoved()) return false;
+		if (!hook.owner.isAlive() || hook.owner.hasDisconnected()) return false;
 		return isHeldInfusedCrossbow(hook.owner.getMainHandItem())
 				|| isHeldInfusedCrossbow(hook.owner.getOffhandItem());
 	}
@@ -169,7 +161,7 @@ public final class GrapplingCrossbowAbilities {
 
 	private static void remove(Iterator<Hook> iterator, Hook hook) {
 		BY_ARROW.remove(hook.arrow);
-		hook.tether.discard();
+		BY_OWNER.remove(hook.owner, hook);
 		if (hook.anchor != null && !hook.arrow.isRemoved()) hook.arrow.discard();
 		iterator.remove();
 	}
@@ -177,15 +169,15 @@ public final class GrapplingCrossbowAbilities {
 	private static final class Hook {
 		private final ServerPlayer owner;
 		private final AbstractArrow arrow;
-		private final Silverfish tether;
 		private Entity target;
 		private Vec3 anchor;
 		private boolean attached;
+		private final long createdAt;
 
-		private Hook(ServerPlayer owner, AbstractArrow arrow, Silverfish tether) {
+		private Hook(ServerPlayer owner, AbstractArrow arrow) {
 			this.owner = owner;
 			this.arrow = arrow;
-			this.tether = tether;
+			this.createdAt = owner.level().getGameTime();
 		}
 	}
 }

@@ -39,4 +39,16 @@ public final class AmethystParticles {
 			level.sendParticles(ParticleTypes.WITCH, x, y, z, 1, 0.0, 0.0, 0.0, 0.0);
 		}
 	}
+
+	public static void tether(ServerLevel level, Vec3 start, Vec3 end) {
+		Vec3 difference = end.subtract(start);
+		double length = difference.length();
+		if (length < 0.1) return;
+		int points = Math.min(72, Math.max(2, (int) Math.ceil(length / 0.65)));
+		for (int i = 1; i < points; i++) {
+			Vec3 point = start.add(difference.scale(i / (double) points));
+			level.sendParticles(ParticleTypes.WITCH, point.x, point.y, point.z,
+					1, 0.0, 0.0, 0.0, 0.0);
+		}
+	}
 }
