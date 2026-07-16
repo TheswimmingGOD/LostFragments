@@ -12,6 +12,7 @@
     ,"MaceItemMixin"
     ,"ApplyExhaustionMixin"
     ,"ApplyEntityImpulseMixin"
+    ,"OverworldBiomeBuilderMixin"
   ],
   "injectors": {
     "defaultRequire": 1
