@@ -81,7 +81,7 @@ public final class ModItems {
 				"ANIMAL ARMOR\n\nInfused BODY-slot armor has a 40% chance when its animal takes a melee hit to deal 1 heart and knock the attacker back. Cooldown: 1 second.",
 				"TRIDENT I\n\nChanneling summons lightning in clear weather when the target has open sky. Impaling affects any mob touching water or exposed to rain.",
 				"TRIDENT II\n\nDry Riptide attempts have a 35% chance to work. Failed attempts still cost durability. Abilities check current enchantments, including ones added later.",
-				"INFUSED SPEAR\n\nIts only ability reduces Lunge hunger/exhaustion. By default, Lunge consumes half the normal amount: 0.5, 1, or 1.5 hunger at levels I, II, or III.",
+				"INFUSED SPEAR\n\nLunge keeps its normal forward movement and adds an upward boost. By default the boost is 0.25 per level, and Lunge consumes half its normal hunger.",
 				"INFUSED MACE\n\nA successful smash makes a 5-block gravity field for 2 seconds. It pulls enemies inward without damage and disables the normal mace smash knockback.",
 				"INFUSED ARMOR I\n\nHelmet: Night Vision\nChestplate: Resistance I\nLeggings: +10% walking and crouching speed, plus improved swimming.",
 				"INFUSED ARMOR II\n\nBoots: 25% less fall damage and no farmland trampling. A stable same-material full set adds health by tier and creates a purple aura.",

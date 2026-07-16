@@ -134,6 +134,7 @@ public final class LostFragmentsConfig {
 	}
 	public static final class Spear {
 		@ConfigRange(min=0,max=100) public double lungeHungerPercent=50;
+		@ConfigRange(min=0,max=5) public double lungeUpwardBoostPerLevel=0.25;
 	}
 	public static final class Mace {
 		@ConfigRange(min=0.1,max=60) public double durationSeconds=2;

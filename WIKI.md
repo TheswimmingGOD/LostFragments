@@ -186,7 +186,9 @@ The abilities check the trident's current enchantments whenever it is used, so s
 ## Infused Spear
 
 - Supports every vanilla spear and compatible modded items in Minecraft's spear item tag.
-- It has no special brace, counterattack, damage, knockback, or durability ability.
+- It has no special brace, counterattack, damage, or durability ability.
+- Lunge keeps its normal forward movement and also launches the wielder upward.
+- The default upward boost is 0.25 velocity per Lunge level: 0.25 at I, 0.5 at II, and 0.75 at III.
 - Lunge on an infused spear consumes 50% less hunger/exhaustion: 0.5, 1, or 1.5 hunger at Lunge I, II, or III instead of 1, 2, or 3.
 
 ## Infused Mace

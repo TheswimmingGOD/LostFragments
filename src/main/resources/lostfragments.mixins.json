@@ -11,6 +11,7 @@
     "ThrownTridentMixin"
     ,"MaceItemMixin"
     ,"ApplyExhaustionMixin"
+    ,"ApplyEntityImpulseMixin"
   ],
   "injectors": {
     "defaultRequire": 1

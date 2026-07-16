@@ -56,7 +56,8 @@ public final class LostFragmentsClient implements ClientModInitializer {
 							.withStyle(ChatFormatting.DARK_PURPLE));
 				} else if (stack.is(ItemTags.SPEARS)) {
 					lines.add(Component.translatable("tooltip.lostfragments.infused_spear",
-							LostFragmentsConfig.get().spear.lungeHungerPercent)
+							LostFragmentsConfig.get().spear.lungeHungerPercent,
+							LostFragmentsConfig.get().spear.lungeUpwardBoostPerLevel)
 							.withStyle(ChatFormatting.DARK_PURPLE));
 				} else if (InfusionService.isAnimalArmor(stack)) {
 					lines.add(Component.translatable("tooltip.lostfragments.infused_animal_armor",

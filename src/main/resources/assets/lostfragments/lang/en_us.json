@@ -11,7 +11,7 @@
   "tooltip.lostfragments.infused_animal_armor": "Reactive Defense: %s%% chance",
   "tooltip.lostfragments.infused_trident": "Empowered trident enchantments",
   "tooltip.lostfragments.infused_mace": "Gravity Field: %s-block pull; no smash knockback",
-  "tooltip.lostfragments.infused_spear": "Lunge hunger cost: %s%%",
+  "tooltip.lostfragments.infused_spear": "Lunge: %s%% hunger cost, +%s upward per level",
   "tooltip.lostfragments.tracking": "Tracking: %s",
   "tooltip.lostfragments.no_target": "No target",
   "message.lostfragments.infusion_hint": "Hold equipment in one hand and an amethyst shard in the other",
