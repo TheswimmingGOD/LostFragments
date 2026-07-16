@@ -21,6 +21,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.component.BundleContents;
 import com.tsg0d.lostfragments.block.ModBlocks;
 import com.tsg0d.lostfragments.client.render.ResonantEnderChestRenderer;
+import com.tsg0d.lostfragments.client.render.GrapplingTetherRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import com.tsg0d.lostfragments.network.TalismanActivationPayload;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
@@ -37,6 +38,7 @@ public final class LostFragmentsClient implements ClientModInitializer {
 		MenuScreens.register(ModMenus.INFUSION_TABLE, InfusionTableScreen::new);
 		MenuScreens.register(ModMenus.RESONANT_ENDER_CHEST, ResonantEnderChestScreen::new);
 		BlockEntityRenderers.register(ModBlocks.RESONANT_ENDER_CHEST_ENTITY, ResonantEnderChestRenderer::new);
+		GrapplingTetherRenderer.initialize();
 		ClientPlayNetworking.registerGlobalReceiver(TalismanActivationPayload.TYPE, (payload, context) ->
 				context.client().execute(() -> context.client().gameRenderer
 						.displayItemActivation(new ItemStack(ModItems.CATMEN_TALISMAN))));

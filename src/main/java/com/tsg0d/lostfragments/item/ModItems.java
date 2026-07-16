@@ -78,7 +78,7 @@ public final class ModItems {
 				"INFUSED HOE\n\nSneak-right-click the top of soil to till 3x3. Sneak-break crops, flowers, grass, dry grass, ferns, large ferns, or leaf litter to clear 3x3.",
 				"INFUSED SWORD\n\nRight-click for a harmless knockback pulse in a 3-block radius. It costs 4 durability and has a 6-second cooldown, even if it misses.",
 				"INFUSED BOW\n\nFires 3 arrows with a slight spread while consuming 1 arrow and normal volley durability. Bow enchantments apply; only the center arrow can be recovered.",
-				"INFUSED CROSSBOW\n\nOne arrow becomes a grappling hook. Block hits pull you to the anchor; entity hits pull the target to you. A purple particle string marks the line. Multishot is disabled.",
+				"INFUSED CROSSBOW\n\nOne arrow becomes a grappling hook. Block hits pull you to the anchor; entity hits pull the target to you. A visual leash marks the line without spawning a mob or Lead. Multishot is disabled.",
 				"ANIMAL ARMOR\n\nInfused BODY-slot armor has a 40% chance when its animal takes a melee hit to deal 1 heart and knock the attacker back. Cooldown: 1 second.",
 				"TRIDENT I\n\nChanneling summons lightning in clear weather when the target has open sky. Impaling affects any mob touching water or exposed to rain.",
 				"TRIDENT II\n\nDry Riptide attempts have a 35% chance to work. Failed attempts still cost durability. Abilities check current enchantments, including ones added later.",

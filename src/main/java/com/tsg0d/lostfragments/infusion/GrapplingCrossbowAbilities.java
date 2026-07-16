@@ -109,11 +109,10 @@ public final class GrapplingCrossbowAbilities {
 				continue;
 			}
 
-			if (hook.owner.level().getGameTime() % 2 == 0) {
-				AmethystParticles.tether((ServerLevel) hook.owner.level(), hook.owner.getEyePosition(), endpoint);
-			}
-
 			if (!hook.attached) continue;
+			hook.arrow.setNoGravity(true);
+			hook.arrow.setDeltaMovement(Vec3.ZERO);
+			hook.arrow.setPos(endpoint);
 			if (distance <= LostFragmentsConfig.get().crossbow.stoppingDistance) {
 				remove(iterator, hook);
 			} else if (hook.target != null) {
@@ -162,7 +161,7 @@ public final class GrapplingCrossbowAbilities {
 	private static void remove(Iterator<Hook> iterator, Hook hook) {
 		BY_ARROW.remove(hook.arrow);
 		BY_OWNER.remove(hook.owner, hook);
-		if (hook.anchor != null && !hook.arrow.isRemoved()) hook.arrow.discard();
+		if (!hook.arrow.isRemoved()) hook.arrow.discard();
 		iterator.remove();
 	}
 
