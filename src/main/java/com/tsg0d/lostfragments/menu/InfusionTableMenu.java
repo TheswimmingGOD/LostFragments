@@ -157,11 +157,9 @@ public final class InfusionTableMenu extends AbstractContainerMenu {
 		if (equipment.has(DataComponents.ENCHANTMENTS)) {
 			result.set(DataComponents.ENCHANTMENTS, equipment.get(DataComponents.ENCHANTMENTS));
 		}
-		if (equipment.isEnchanted()) {
-			result.remove(DataComponents.ENCHANTMENT_GLINT_OVERRIDE);
-		} else {
-			result.set(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, false);
-		}
+		// Infusion components do not create glint by themselves. Leaving this override
+		// absent lets vanilla show glint whenever the item is enchanted, including later.
+		result.remove(DataComponents.ENCHANTMENT_GLINT_OVERRIDE);
 		if (equipment.is(Items.FISHING_ROD)) {
 			result.set(DataComponents.ITEM_MODEL, LostFragments.id("infused_fishing_rod"));
 		}

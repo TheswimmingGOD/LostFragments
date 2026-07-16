@@ -6,6 +6,7 @@ import com.tsg0d.lostfragments.menu.InfusionTableMenu;
 import net.fabricmc.fabric.api.menu.v1.ExtendedMenuProvider;
 import net.fabricmc.fabric.api.event.player.UseBlockCallback;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -129,6 +130,15 @@ public final class InfusionService {
 	}
 
 	public static void initialize() {
+		ServerTickEvents.END_SERVER_TICK.register(server -> {
+			if (server.getTickCount() % 10 != 0) return;
+			for (ServerPlayer player : server.getPlayerList().getPlayers()) {
+				for (int slot = 0; slot < player.getInventory().getContainerSize(); slot++) {
+					restoreEnchantedGlint(player.getInventory().getItem(slot));
+				}
+			}
+		});
+
 		UseBlockCallback.EVENT.register((player, level, hand, hit) -> {
 			ItemStack held = player.getItemInHand(hand);
 			if (held.is(ModBlocks.RESONANT_ENDER_CHEST.asItem()) && isFractured(held)) {
@@ -168,5 +178,12 @@ public final class InfusionService {
 			return stack.is(ModItems.BOOK_OF_INFUSION) && isFractured(stack)
 					? InteractionResult.FAIL : InteractionResult.PASS;
 		});
+	}
+
+	private static void restoreEnchantedGlint(ItemStack stack) {
+		if (hasInfusion(stack) && stack.isEnchanted()
+				&& Boolean.FALSE.equals(stack.get(DataComponents.ENCHANTMENT_GLINT_OVERRIDE))) {
+			stack.remove(DataComponents.ENCHANTMENT_GLINT_OVERRIDE);
+		}
 	}
 }
