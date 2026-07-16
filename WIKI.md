@@ -383,9 +383,10 @@ Infuse the result with eight amethyst shards to create a Catmen Talisman.
 
 ## Amethyst Hollows
 
-The Amethyst Hollows are small, rare cave-biome pockets found deep in newly generated Overworld terrain.
+The Amethyst Hollows are proper underground cave-biome pockets, like Dripstone Caves, found at Y 20 or lower in newly generated Overworld terrain.
 
-- Large amounts of regular amethyst generate throughout the surrounding stone and deepslate.
+- Dense amethyst, calcite, smooth basalt, buds, and clusters coat exposed cave walls, floors, and ceilings so the biome is visually distinct from an ordinary cave.
+- The biome uses a narrow climate range and high rarity offset to keep each pocket small and uncommon.
 - Budding amethyst appears in much smaller quantities.
 - Normal amethyst geodes can also generate inside the biome.
 - Only skeletons and endermites spawn naturally in the biome.

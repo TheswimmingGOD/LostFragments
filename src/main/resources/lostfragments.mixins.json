@@ -13,6 +13,7 @@
     ,"ApplyExhaustionMixin"
     ,"ApplyEntityImpulseMixin"
     ,"OverworldBiomeBuilderMixin"
+    ,"MultiNoiseBiomeSourceMixin"
   ],
   "injectors": {
     "defaultRequire": 1

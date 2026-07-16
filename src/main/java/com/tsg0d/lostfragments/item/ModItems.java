@@ -93,7 +93,7 @@ public final class ModItems {
 				"INFUSED BUNDLE\n\nAny colour works. Stable: 8 non-stackable items. Failed: stackable items only, with random 16-48 capacity. Primary-click inserts; secondary removes.",
 				"CATMEN TALISMAN\n\nCraft the cracked form with Corner Fragments in the corners and Side Fragments on the sides. Infuse with 8 shards. It prevents 8 deaths, even void, preserves positive effects, and clears harmful effects.",
 				"FRAGMENTS\n\nOne random fragment has an 8% chance in Ancient/End Cities, temples, shipwrecks, buried treasure, and listed suspicious sand or gravel archaeology.",
-				"AMETHYST HOLLOWS\n\nA small, rare biome deep underground, filled with amethyst. Only skeletons and endermites spawn naturally. Water grants Resistance I, or II while wearing stable infused armor.",
+				"AMETHYST HOLLOWS\n\nA proper small, rare cave biome at Y 20 or lower. Amethyst, calcite, basalt, buds, and clusters coat its walls, floors, and ceilings. Only skeletons and endermites spawn.",
 				"CONFIGURATION\n\nGameplay numbers can be changed through Lost Fragments' Configure button in Mod Menu, or config/lostfragments.json. Server settings control multiplayer. Some settings need a restart.",
 				"FAILED ITEMS\n\nRed items are inactive. Failures stack: Fracture I costs 2x to retry, II costs 3x, and so on. Full retry cost is safe and clears all Fracture levels."
 		);
