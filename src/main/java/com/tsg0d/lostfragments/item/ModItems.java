@@ -83,7 +83,7 @@ public final class ModItems {
 				"TRIDENT I\n\nChanneling summons lightning in clear weather when the target has open sky. Impaling affects any mob touching water or exposed to rain.",
 				"TRIDENT II\n\nDry Riptide attempts have a 35% chance to work. Failed attempts still cost durability. Abilities check current enchantments, including ones added later.",
 				"INFUSED SPEAR\n\nLunge keeps its normal forward movement and adds an upward boost. By default the boost is 0.25 per level, and Lunge consumes half its normal hunger.",
-				"INFUSED MACE\n\nA successful smash makes a 5-block gravity field for 2 seconds. It pulls enemies inward without damage and disables the normal mace smash knockback.",
+				"INFUSED MACE\n\nA successful smash keeps the normal mace knockback and makes a 5-block gravity field for 2 seconds. The field then pulls enemies inward without damage.",
 				"INFUSED ARMOR I\n\nHelmet: Night Vision\nChestplate: Resistance I\nLeggings: +10% walking and crouching speed, plus improved swimming.",
 				"INFUSED ARMOR II\n\nBoots: 25% less fall damage and no farmland trampling. A stable same-material full set adds health by tier and creates a purple aura.",
 				"TELEPORT ROD\n\nHold a pearl in the other hand and sneak-right-click to load. Cast to save a point. Right-click later to teleport. Same dimension; base range 1500.",
