@@ -21,13 +21,13 @@ public abstract class OverworldBiomeBuilderMixin {
 			Consumer<Pair<Climate.ParameterPoint, ResourceKey<Biome>>> consumer,
 			CallbackInfo ci) {
 		consumer.accept(Pair.of(Climate.parameters(
-				Climate.Parameter.span(0.22F, 0.28F),
-				Climate.Parameter.span(0.16F, 0.20F),
-				Climate.Parameter.span(0.22F, 0.26F),
-				Climate.Parameter.span(-0.24F, -0.21F),
-				Climate.Parameter.span(0.76F, 0.86F),
+				Climate.Parameter.span(0.10F, 0.35F),
+				Climate.Parameter.span(0.17F, 0.18F),
+				Climate.Parameter.span(0.15F, 0.35F),
+				Climate.Parameter.span(-0.30F, -0.15F),
+				Climate.Parameter.span(0.72F, 0.88F),
 				Climate.Parameter.span(0.745F, 0.755F),
-				(float) LostFragmentsConfig.get().amethystHollows.rarityOffset
+				(float) LostFragmentsConfig.get().amethystHollows.biomeRarityOffset
 		), ModBiomes.AMETHYST_HOLLOWS));
 	}
 }

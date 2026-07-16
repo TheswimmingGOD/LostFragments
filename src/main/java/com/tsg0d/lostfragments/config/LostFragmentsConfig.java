@@ -163,6 +163,6 @@ public final class LostFragmentsConfig {
 	public static final class AmethystHollows {
 		@ConfigRange(min=1,max=10) public int waterResistanceLevel=1, infusedWaterResistanceLevel=2;
 		@ConfigRange(min=20,max=1200) public int waterEffectDurationTicks=50;
-		@ConfigRange(min=0,max=1) public double rarityOffset=0.55;
+		@ConfigRange(min=0,max=1) public double biomeRarityOffset=0.15;
 	}
 }
