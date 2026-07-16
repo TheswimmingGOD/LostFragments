@@ -20,6 +20,7 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.BowItem;
+import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.TridentItem;
 import net.minecraft.world.item.MaceItem;
 import com.tsg0d.lostfragments.item.ModItems;
@@ -56,6 +57,7 @@ public final class InfusionService {
 				|| stack.is(Items.BOOK)
 				|| stack.is(ModItems.BOOK_OF_INFUSION)
 				|| stack.getItem() instanceof BowItem
+				|| stack.getItem() instanceof CrossbowItem
 				|| stack.getItem() instanceof TridentItem
 				|| stack.getItem() instanceof MaceItem
 				|| stack.is(ItemTags.SPEARS)
@@ -122,6 +124,7 @@ public final class InfusionService {
 		if (stack.is(ModItems.CRACKED_CATMEN_TALISMAN) || stack.is(ModItems.CATMEN_TALISMAN)) return c.talismanCost;
 		if (stack.is(Items.BOOK) || stack.is(ModItems.BOOK_OF_INFUSION)) return c.bookCost;
 		if (stack.getItem() instanceof BowItem) return c.bowCost;
+		if (stack.getItem() instanceof CrossbowItem) return c.crossbowCost;
 		if (isAnimalArmor(stack)) return c.animalArmorCost;
 		if (stack.is(ItemTags.SPEARS)) return c.spearCost;
 		if (stack.getItem() instanceof TridentItem) return c.tridentCost;

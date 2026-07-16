@@ -26,6 +26,7 @@ import com.tsg0d.lostfragments.network.TalismanActivationPayload;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.BowItem;
+import net.minecraft.world.item.CrossbowItem;
 import net.minecraft.world.item.TridentItem;
 import net.minecraft.world.item.MaceItem;
 import com.tsg0d.lostfragments.config.LostFragmentsConfig;
@@ -43,7 +44,11 @@ public final class LostFragmentsClient implements ClientModInitializer {
 			if (InfusionService.isInfused(stack)) {
 				lines.add(Component.translatable("tooltip.lostfragments.amethyst_infused")
 						.withStyle(ChatFormatting.LIGHT_PURPLE));
-				if (stack.getItem() instanceof BowItem) {
+				if (stack.getItem() instanceof CrossbowItem) {
+					lines.add(Component.translatable("tooltip.lostfragments.infused_crossbow",
+							LostFragmentsConfig.get().crossbow.maximumLineDistance)
+							.withStyle(ChatFormatting.DARK_PURPLE));
+				} else if (stack.getItem() instanceof BowItem) {
 					lines.add(Component.translatable("tooltip.lostfragments.infused_bow",
 							LostFragmentsConfig.get().bow.arrowCount)
 							.withStyle(ChatFormatting.DARK_PURPLE));

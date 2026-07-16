@@ -8,6 +8,7 @@
   "tooltip.lostfragments.fractured_armor": "Fractured armor - penalties scale with level %s",
   "tooltip.lostfragments.fracture_level": "Fracture Level: %s",
   "tooltip.lostfragments.infused_bow": "Amethyst Multishot: %s arrows",
+  "tooltip.lostfragments.infused_crossbow": "Grappling Hook: %s-block line",
   "tooltip.lostfragments.infused_animal_armor": "Reactive Defense: %s%% chance",
   "tooltip.lostfragments.infused_trident": "Empowered trident enchantments",
   "tooltip.lostfragments.infused_mace": "Gravity Field: %s-block pull; no smash knockback",

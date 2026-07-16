@@ -20,6 +20,7 @@ public final class LostFragmentsConfig {
 	public Mining mining = new Mining();
 	public Sword sword = new Sword();
 	public Bow bow = new Bow();
+	public Crossbow crossbow = new Crossbow();
 	public AnimalArmor animalArmor = new AnimalArmor();
 	public Armor armor = new Armor();
 	public Trident trident = new Trident();
@@ -89,7 +90,7 @@ public final class LostFragmentsConfig {
 		@ConfigRange(min=1,max=64) public int bookCost=1, shovelCost=2, hoeCost=2, clockCost=2;
 		@ConfigRange(min=1,max=64) public int pickaxeCost=3, axeCost=3, swordCost=3, compassCost=3;
 		@ConfigRange(min=1,max=64) public int helmetCost=4, bootsCost=4, fishingRodCost=4, bundleCost=4;
-		@ConfigRange(min=1,max=64) public int bowCost=4, animalArmorCost=4, spearCost=4, leggingsCost=5;
+		@ConfigRange(min=1,max=64) public int bowCost=4, animalArmorCost=4, spearCost=4, crossbowCost=5, leggingsCost=5;
 		@ConfigRange(min=1,max=64) public int tridentCost=5, chestplateCost=6, maceCost=6;
 		@ConfigRange(min=1,max=64) public int enderChestCost=8, talismanCost=8;
 		@ConfigRange(min=0,max=100) public double successRepairPercent=15;
@@ -111,6 +112,12 @@ public final class LostFragmentsConfig {
 	public static final class Bow {
 		@ConfigRange(min=1,max=15) public int arrowCount=3;
 		@ConfigRange(min=0,max=90) public double spreadDegrees=10;
+	}
+	public static final class Crossbow {
+		@ConfigRange(min=4,max=256) public double maximumLineDistance=64;
+		@ConfigRange(min=0.05,max=3) public double playerPullStrength=0.42;
+		@ConfigRange(min=0.05,max=3) public double entityPullStrength=0.34;
+		@ConfigRange(min=0.5,max=8) public double stoppingDistance=2;
 	}
 	public static final class AnimalArmor {
 		@ConfigRange(min=0,max=100) public double activationChancePercent=40;

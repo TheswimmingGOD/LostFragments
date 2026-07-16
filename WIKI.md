@@ -62,6 +62,7 @@ The Infusion Table is used for every infusion in this mod.
 | Bow | 4 |
 | Animal armor (BODY slot) | 4 |
 | Spear | 4 |
+| Crossbow | 5 |
 | Leggings | 5 |
 | Trident | 5 |
 | Chestplate | 6 |
@@ -154,6 +155,15 @@ The hoe has two 3×3 abilities. Both work horizontally regardless of the directi
 - Power, Punch, Flame, Infinity, Unbreaking, Mending, tipped arrows, and spectral arrows continue to work normally.
 - Only the centered arrow can be recovered, preventing duplicated special arrows.
 - Purple particles appear when the volley is fired.
+
+## Infused Crossbow
+
+- Fires and consumes ordinary crossbow ammunition normally.
+- A visible lead-like tether connects the shooter to the fired arrow.
+- Hitting a block anchors the arrow and pulls the shooter toward it.
+- Hitting an entity pulls that entity toward the shooter after the arrow deals its normal damage.
+- The hook stops when the target reaches the shooter, the shooter reaches the anchor, the infused crossbow is switched away, or the line exceeds 64 blocks.
+- Crossbow enchantments and special arrow types continue to work normally.
 
 ## Infused Animal Armor
 

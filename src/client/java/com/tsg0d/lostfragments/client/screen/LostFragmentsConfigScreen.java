@@ -224,7 +224,7 @@ public final class LostFragmentsConfigScreen extends Screen {
 		}
 		groups.add(group("Infusion", sections, "infusion"));
 		groups.add(group("Tools", sections, "mining"));
-		groups.add(group("Weapons", sections, "sword", "bow", "trident", "spear", "mace"));
+		groups.add(group("Weapons", sections, "sword", "bow", "crossbow", "trident", "spear", "mace"));
 		groups.add(group("Armor & Companions", sections, "armor", "animalArmor"));
 		groups.add(group("Utility Items", sections, "fishingRod", "bundle"));
 		groups.add(group("Talisman & Storage", sections, "talisman", "resonantChest"));

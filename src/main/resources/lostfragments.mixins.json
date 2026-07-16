@@ -12,6 +12,7 @@
     ,"MaceItemMixin"
     ,"ApplyExhaustionMixin"
     ,"ApplyEntityImpulseMixin"
+    ,"AbstractArrowMixin"
   ],
   "injectors": {
     "defaultRequire": 1
