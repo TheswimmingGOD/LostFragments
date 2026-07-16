@@ -378,7 +378,7 @@ Infuse the result with eight amethyst shards to create a Catmen Talisman.
 - Each talisman has eight death saves.
 - The tooltip shows the number of remaining uses.
 - The talisman disappears after its eighth activation.
-- Activation leaves the player at 1 health, extinguishes fire, clears existing status effects, and grants Regeneration II, Absorption II, and Fire Resistance.
+- Activation leaves the player at 1 health, extinguishes fire, preserves existing beneficial status effects, removes harmful and neutral effects, and grants Regeneration II, Absorption II, and Fire Resistance.
 - Uses the normal Totem of Undying screen animation with the Catmen Talisman's own texture, plays the Totem sound, and creates a large purple particle burst instead of vanilla Totem particles.
 - A void activation teleports the player to the Overworld world spawn before applying the rescue effects.
 

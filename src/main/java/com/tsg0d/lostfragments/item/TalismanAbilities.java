@@ -95,7 +95,11 @@ public final class TalismanAbilities {
 
 		player.setHealth((float) Math.min(player.getMaxHealth(), config.healthAfterSave));
 		player.clearFire();
-		player.removeAllEffects();
+		player.getActiveEffects().stream()
+				.filter(effect -> !effect.getEffect().value().isBeneficial())
+				.map(MobEffectInstance::getEffect)
+				.toList()
+				.forEach(player::removeEffect);
 		player.addEffect(new MobEffectInstance(MobEffects.REGENERATION,
 				(int) Math.round(config.regenerationSeconds * 20.0), config.regenerationLevel - 1));
 		player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION,

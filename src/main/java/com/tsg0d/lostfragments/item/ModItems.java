@@ -91,7 +91,7 @@ public final class ModItems {
 				"RESONANT CHEST\n\nInfuse an Ender Chest. Put an item in its key slot to choose a frequency. Up to 4 linked chests share 27 slots across dimensions. Hoppers work.",
 				"CHEST SAFETY\n\nThe key slot is not automated. Breaking the last chest on a frequency drops all shared contents. Pre-key items merge safely when a key is chosen.",
 				"INFUSED BUNDLE\n\nAny colour works. Stable: 8 non-stackable items. Failed: stackable items only, with random 16-48 capacity. Primary-click inserts; secondary removes.",
-				"CATMEN TALISMAN\n\nCraft the cracked form with Corner Fragments in the corners and Side Fragments on the sides. Infuse with 8 shards. It prevents 8 deaths, even void.",
+				"CATMEN TALISMAN\n\nCraft the cracked form with Corner Fragments in the corners and Side Fragments on the sides. Infuse with 8 shards. It prevents 8 deaths, even void, preserves positive effects, and clears harmful effects.",
 				"FRAGMENTS\n\nOne random fragment has an 8% chance in Ancient/End Cities, temples, shipwrecks, buried treasure, and listed suspicious sand or gravel archaeology.",
 				"CONFIGURATION\n\nGameplay numbers can be changed through Lost Fragments' Configure button in Mod Menu, or config/lostfragments.json. Server settings control multiplayer. Some settings need a restart.",
 				"FAILED ITEMS\n\nRed items are inactive. Failures stack: Fracture I costs 2x to retry, II costs 3x, and so on. Full retry cost is safe and clears all Fracture levels."
