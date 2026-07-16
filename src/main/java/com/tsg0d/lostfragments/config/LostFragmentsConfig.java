@@ -133,14 +133,6 @@ public final class LostFragmentsConfig {
 		@ConfigRange(min=0,max=100) public double impalingDamagePerLevel=2.5;
 	}
 	public static final class Spear {
-		@ConfigRange(min=0.5,max=32) public double braceRange=4;
-		@ConfigRange(min=10,max=180) public double braceAngleDegrees=78;
-		@ConfigRange(min=0,max=300) public double targetCooldownSeconds=1;
-		@ConfigRange(min=0,max=100) public double bracingMovementPercent=25;
-		@ConfigRange(min=0,max=5) public double minimumApproachSpeed=0.045;
-		@ConfigRange(min=0,max=100) public double minimumDamage=4, maximumDamage=8, speedDamageMultiplier=12;
-		@ConfigRange(min=0,max=5) public double knockback=0.9, upwardKnockback=0.25;
-		@ConfigRange(min=0,max=100) public int durabilityCost=1;
 		@ConfigRange(min=0,max=100) public double lungeHungerPercent=50;
 	}
 	public static final class Mace {

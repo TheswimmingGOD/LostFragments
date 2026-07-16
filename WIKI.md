@@ -186,17 +186,13 @@ The abilities check the trident's current enchantments whenever it is used, so s
 ## Infused Spear
 
 - Supports every vanilla spear and compatible modded items in Minecraft's spear item tag.
-- Sneak and hold use to enter **Resonant Brace** instead of preparing a normal spear charge.
-- The player is heavily slowed while bracing.
-- A fast enemy entering the forward guard is struck, stopped, and knocked backward. Enemies approaching from behind bypass the brace.
-- Counter damage scales from 4 to 8 damage according to the enemy's approach speed.
-- Each successful counter costs one spear durability, and the same enemy cannot be countered more than once per second.
-- Purple particles appear only when a counter succeeds.
+- It has no special brace, counterattack, damage, knockback, or durability ability.
 - Lunge on an infused spear consumes 50% less hunger/exhaustion: 0.5, 1, or 1.5 hunger at Lunge I, II, or III instead of 1, 2, or 3.
 
 ## Infused Mace
 
 - A successful smash attack creates an **Amethyst Gravity Field** at the impact point.
+- The infused mace disables the normal mace smash knockback, so nearby mobs are not blasted away from the impact.
 - The field lasts two seconds and pulls hostile or non-allied living enemies within five blocks toward its center several times per second.
 - The pull itself deals no damage and ignores the wielder, allies, pets, armor stands, items, and projectiles.
 - Purple particles spiral inward while the field is active.
