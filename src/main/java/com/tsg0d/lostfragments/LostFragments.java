@@ -18,8 +18,6 @@ import com.tsg0d.lostfragments.item.FirstJoinBookGift;
 import com.tsg0d.lostfragments.item.TalismanAbilities;
 import com.tsg0d.lostfragments.network.ModNetworking;
 import com.tsg0d.lostfragments.config.LostFragmentsConfig;
-import com.tsg0d.lostfragments.worldgen.ModBiomes;
-import com.tsg0d.lostfragments.worldgen.ModFeatures;
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,8 +33,6 @@ public final class LostFragments implements ModInitializer {
 		ModNetworking.initialize();
 		ModBlocks.initialize();
 		ModItems.initialize();
-		ModFeatures.initialize();
-		ModBiomes.initialize();
 		FirstJoinBookGift.initialize();
 		ModMenus.initialize();
 		InfusionService.initialize();

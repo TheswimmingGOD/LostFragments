@@ -380,28 +380,6 @@ Infuse the result with eight amethyst shards to create a Catmen Talisman.
 - The talisman disappears after its eighth activation.
 - Activation leaves the player at 1 health, extinguishes fire, preserves existing beneficial status effects, removes harmful and neutral effects, and grants Regeneration II, Absorption II, and Fire Resistance.
 - Uses the normal Totem of Undying screen animation with the Catmen Talisman's own texture, plays the Totem sound, and creates a large purple particle burst instead of vanilla Totem particles.
-
-## Amethyst Hollows
-
-The Amethyst Hollows are proper underground cave-biome pockets, like Dripstone Caves, found at Y 20 or lower in newly generated Overworld terrain.
-
-- Dense amethyst, calcite, smooth basalt, buds, and clusters coat exposed cave walls, floors, and ceilings so the biome is visually distinct from an ordinary cave.
-- The biome uses a narrow reachable climate range and rarity offset to keep its cave pockets uncommon without preventing them from generating.
-- Budding amethyst appears in much smaller quantities.
-- Normal amethyst geodes can also generate inside the biome.
-- Only skeletons and endermites spawn naturally in the biome.
-- No special Lost Fragments structures generate there.
-- Touching water inside the biome grants Resistance I.
-- Wearing at least one successfully infused armor piece while touching the water upgrades the effect to Resistance II.
-- Failed or fractured infused armor does not provide the upgrade.
-- The water effect uses hidden potion particles and fades shortly after leaving the water or biome.
-- Its water-effect levels, duration, and climate rarity offset can be adjusted in the World Generation section of Mod Menu or `config/lostfragments.json`.
-
-The biome only appears in new chunks. It can be found for testing with:
-
-```mcfunction
-/locate biome lostfragments:amethyst_hollows
-```
 - A void activation teleports the player to the Overworld world spawn before applying the rescue effects.
 
 ## Visual language

@@ -228,7 +228,6 @@ public final class LostFragmentsConfigScreen extends Screen {
 		groups.add(group("Armor & Companions", sections, "armor", "animalArmor"));
 		groups.add(group("Utility Items", sections, "fishingRod", "bundle"));
 		groups.add(group("Talisman & Storage", sections, "talisman", "resonantChest"));
-		groups.add(group("World Generation", sections, "amethystHollows"));
 	}
 
 	private static ConfigGroup group(String label, Map<String, ConfigSection> sections, String... names) {
@@ -242,7 +241,6 @@ public final class LostFragmentsConfigScreen extends Screen {
 			case "animalArmor" -> "Animal Armor";
 			case "fishingRod" -> "Fishing Rod";
 			case "resonantChest" -> "Resonant Chest";
-			case "amethystHollows" -> "Amethyst Hollows";
 			default -> humanize(name);
 		};
 	}

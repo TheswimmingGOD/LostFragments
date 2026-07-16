@@ -29,7 +29,6 @@ public final class LostFragmentsConfig {
 	public Bundle bundle = new Bundle();
 	public Talisman talisman = new Talisman();
 	public ResonantChest resonantChest = new ResonantChest();
-	public AmethystHollows amethystHollows = new AmethystHollows();
 
 	public static LostFragmentsConfig get() { return instance; }
 
@@ -159,10 +158,5 @@ public final class LostFragmentsConfig {
 	}
 	public static final class ResonantChest {
 		@ConfigRange(min=1,max=64) public int maximumLinkedChests=4;
-	}
-	public static final class AmethystHollows {
-		@ConfigRange(min=1,max=10) public int waterResistanceLevel=1, infusedWaterResistanceLevel=2;
-		@ConfigRange(min=20,max=1200) public int waterEffectDurationTicks=50;
-		@ConfigRange(min=0,max=1) public double biomeRarityOffset=0.15;
 	}
 }
