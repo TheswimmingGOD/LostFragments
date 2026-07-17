@@ -144,8 +144,8 @@ public final class LostFragmentsConfig {
 		@ConfigRange(min=0,max=5) public double lungeUpwardBoostPerLevel=0.25;
 	}
 	public static final class Mace {
-		@ConfigRange(min=0.1,max=60) public double durationSeconds=2;
-		@ConfigRange(min=0.5,max=32) public double radius=5;
+		@ConfigRange(min=0.1,max=60) public double durationSeconds=3;
+		@ConfigRange(min=0.5,max=32) public double radius=10;
 		@ConfigRange(min=1,max=100) public int pullIntervalTicks=4;
 		@ConfigRange(min=0,max=5) public double minimumPull=0.18, maximumPull=0.34;
 		@ConfigRange(min=0,max=100) public int durabilityCost=2;

@@ -205,7 +205,7 @@ The abilities check the trident's current enchantments whenever it is used, so s
 
 - A successful smash attack creates an **Amethyst Gravity Field** at the impact point.
 - The normal mace smash knockback works as usual.
-- The field lasts two seconds and pulls hostile or non-allied living enemies within five blocks toward its center several times per second.
+- The field lasts three seconds and pulls hostile or non-allied living enemies within ten blocks toward its center several times per second.
 - The pull itself deals no damage and ignores the wielder, allies, pets, armor stands, items, and projectiles.
 - Purple particles spiral inward while the field is active.
 - The ability costs two additional mace durability only if at least one enemy is actually pulled.
